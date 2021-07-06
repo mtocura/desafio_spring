@@ -1,13 +1,32 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class PostForm {
+    @NotNull
+    @NotEmpty
     private int userId;
+
+    @NotNull
+    @NotEmpty
     private int id_post;
+
+    @NotNull
+    @NotEmpty
     private Date date;
+
+    @NotNull
+    @NotEmpty
     private ProductForm detail;
+
+    @NotNull
+    @NotEmpty
     private int category;
+
+    @NotNull
+    @NotEmpty
     private double price;
 
     public PostForm() {
