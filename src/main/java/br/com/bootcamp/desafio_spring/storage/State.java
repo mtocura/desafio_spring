@@ -1,6 +1,12 @@
 package br.com.bootcamp.desafio_spring.storage;
 
+import br.com.bootcamp.desafio_spring.entity.Post;
+import br.com.bootcamp.desafio_spring.entity.Product;
+import br.com.bootcamp.desafio_spring.entity.Seller;
+import br.com.bootcamp.desafio_spring.entity.User;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class State {
 
