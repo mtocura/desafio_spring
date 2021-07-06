@@ -3,6 +3,7 @@ package br.com.bootcamp.desafio_spring.dto;
 import java.util.Date;
 
 public class PostDTO {
+    private Integer userId;
     private Integer id;
     private Double price;
     private Integer category;
@@ -13,7 +14,8 @@ public class PostDTO {
     private Date expiredAt;
     private Date createdAt;
 
-    public PostDTO(Integer id, Double price, Integer category, ProductDTO productDTO, Integer sellerID, Boolean hasPromo, Double discount, Date expiredAt, Date createdAt) {
+    public PostDTO(Integer userId, Integer id, Double price, Integer category, ProductDTO productDTO, Integer sellerID, Boolean hasPromo, Double discount, Date expiredAt, Date createdAt) {
+        this.userId = userId;
         this.id = id;
         this.price = price;
         this.category = category;
@@ -23,6 +25,14 @@ public class PostDTO {
         this.discount = discount;
         this.expiredAt = expiredAt;
         this.createdAt = createdAt;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getId() {
