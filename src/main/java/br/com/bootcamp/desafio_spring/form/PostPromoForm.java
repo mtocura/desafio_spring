@@ -1,9 +1,16 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class PostPromoForm extends PostForm{
+    @NotNull
+    @NotEmpty
     private boolean hasPromo;
+
+    @NotNull
+    @NotEmpty
     private double discount;
 
     public PostPromoForm() {
