@@ -13,6 +13,6 @@ public class MemoryStorage implements IStorage{
 
     @Override
     public void flush() throws IOException {
-        // não faz nada
+        //não faz nada
     }
 }
