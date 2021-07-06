@@ -1,38 +1,36 @@
-package br.com.bootcamp.desafio_spring.entity;
+package br.com.bootcamp.desafio_spring.dto;
 
 import java.util.Date;
 
-public class Post implements IEntity {
-    private Integer ID;
+public class PostDTO {
+    private Integer id;
     private Double price;
     private Integer category;
-    private Product product;
+    private ProductDTO productDTO;
     private Integer sellerID;
     private Boolean hasPromo;
     private Double discount;
-    private Date expireAt;
+    private Date expiredAt;
     private Date createdAt;
 
-    public Post(Integer ID, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, Date expireAt, Date createdAt) {
-        this.ID = ID;
+    public PostDTO(Integer id, Double price, Integer category, ProductDTO productDTO, Integer sellerID, Boolean hasPromo, Double discount, Date expiredAt, Date createdAt) {
+        this.id = id;
         this.price = price;
         this.category = category;
-        this.product = product;
+        this.productDTO = productDTO;
         this.sellerID = sellerID;
         this.hasPromo = hasPromo;
         this.discount = discount;
-        this.expireAt = expireAt;
+        this.expiredAt = expiredAt;
         this.createdAt = createdAt;
     }
 
-    @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getPrice() {
@@ -51,12 +49,12 @@ public class Post implements IEntity {
         this.category = category;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductDTO getProductDTO() {
+        return productDTO;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductDTO(ProductDTO productDTO) {
+        this.productDTO = productDTO;
     }
 
     public Integer getSellerID() {
@@ -83,12 +81,12 @@ public class Post implements IEntity {
         this.discount = discount;
     }
 
-    public Date getExpireAt() {
-        return expireAt;
+    public Date getExpiredAt() {
+        return expiredAt;
     }
 
-    public void setExpireAt(Date expireAt) {
-        this.expireAt = expireAt;
+    public void setExpiredAt(Date expiredAt) {
+        this.expiredAt = expiredAt;
     }
 
     public Date getCreatedAt() {
