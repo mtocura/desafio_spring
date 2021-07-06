@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 public class ProductForm {
     @NotNull
     @NotEmpty
-    private int product_id;
+    private int productId;
 
     @NotNull
     @NotEmpty
@@ -31,8 +31,8 @@ public class ProductForm {
     public ProductForm() {
     }
 
-    public ProductForm(int product_id, String productName, String type, String brand, String color, String notes) {
-        this.product_id = product_id;
+    public ProductForm(int productId, String productName, String type, String brand, String color, String notes) {
+        this.productId = ProductForm.this.productId;
         this.productName = productName;
         this.type = type;
         this.brand = brand;
@@ -40,8 +40,8 @@ public class ProductForm {
         this.notes = notes;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
     public String getProductName() {
