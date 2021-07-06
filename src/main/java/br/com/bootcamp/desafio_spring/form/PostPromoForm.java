@@ -16,8 +16,8 @@ public class PostPromoForm extends PostForm{
     public PostPromoForm() {
     }
 
-    public PostPromoForm(int userId, int id_post, Date date, ProductForm detail, int category, double price, boolean hasPromo, double discount) {
-        super(userId, id_post, date, detail, category, price);
+    public PostPromoForm(int userId, int postId, Date date, ProductForm detail, int category, double price, boolean hasPromo, double discount) {
+        super(userId, postId, date, detail, category, price);
         this.hasPromo = hasPromo;
         this.discount = discount;
     }
