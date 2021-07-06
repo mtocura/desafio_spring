@@ -1,5 +1,9 @@
 package br.com.bootcamp.desafio_spring.repository;
 
+import br.com.bootcamp.desafio_spring.entity.IEntity;
+import br.com.bootcamp.desafio_spring.storage.State;
+import br.com.bootcamp.desafio_spring.storage.Storage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
