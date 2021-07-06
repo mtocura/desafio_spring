@@ -1,15 +1,15 @@
-package br.com.bootcamp.desafio_spring.entity;
+package br.com.bootcamp.desafio_spring.dto;
 
-public class Product implements IEntity {
-    private Integer ID;
+public class ProductDTO {
+    private Integer id;
     private String name;
     private String type;
     private String brand;
     private String color;
     private String notes;
 
-    public Product(Integer ID, String name, String type, String brand, String color, String notes) {
-        this.ID = ID;
+    public ProductDTO(Integer id, String name, String type, String brand, String color, String notes) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.brand = brand;
@@ -17,14 +17,12 @@ public class Product implements IEntity {
         this.notes = notes;
     }
 
-    @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
