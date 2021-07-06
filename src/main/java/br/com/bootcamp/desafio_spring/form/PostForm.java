@@ -1,5 +1,7 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -11,6 +13,7 @@ public class PostForm {
 
     @NotNull
     @NotEmpty
+    @JsonProperty("id_post")
     private int postId;
 
     @NotNull

@@ -1,11 +1,14 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class ProductForm {
     @NotNull
     @NotEmpty
+    @JsonProperty("product_id")
     private int productId;
 
     @NotNull
