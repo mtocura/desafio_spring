@@ -1,11 +1,31 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class ProductForm {
+    @NotNull
+    @NotEmpty
     private int product_id;
+
+    @NotNull
+    @NotEmpty
     private String productName;
+
+    @NotNull
+    @NotEmpty
     private String type;
+
+    @NotNull
+    @NotEmpty
     private String brand;
+
+    @NotNull
+    @NotEmpty
     private String color;
+
+    @NotNull
+    @NotEmpty
     private String notes;
 
     public ProductForm() {
