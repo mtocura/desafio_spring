@@ -1,29 +1,27 @@
-package br.com.bootcamp.desafio_spring.entity;
+package br.com.bootcamp.desafio_spring.dto;
 
 import java.util.List;
 
-public class User implements IEntity {
-    private Integer ID;
+public class UserDTO {
+    private Integer id;
     private String name;
-    private List<Seller> following;
+    private List<SellerDTO> following;
 
-    public User() {
+    public UserDTO() {
     }
 
-    public User(Integer ID, String name, List<Seller> following) {
-        this.ID = ID;
+    public UserDTO(Integer id, String name, List<SellerDTO> following) {
+        this.id = id;
         this.name = name;
         this.following = following;
     }
 
-    @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,21 +32,11 @@ public class User implements IEntity {
         this.name = name;
     }
 
-    public List<Seller> getFollowing() {
+    public List<SellerDTO> getFollowing() {
         return following;
     }
 
-    public void setFollowing(List<Seller> following) {
+    public void setFollowing(List<SellerDTO> following) {
         this.following = following;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
-                ", following=" + following +
-                '}';
-    }
-
 }
