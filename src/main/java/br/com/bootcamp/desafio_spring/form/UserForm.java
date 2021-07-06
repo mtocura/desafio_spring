@@ -1,6 +1,11 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class UserForm {
+    @NotNull
+    @NotEmpty
     private String name;
 
     public UserForm() {
