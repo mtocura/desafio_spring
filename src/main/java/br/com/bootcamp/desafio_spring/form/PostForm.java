@@ -11,7 +11,7 @@ public class PostForm {
 
     @NotNull
     @NotEmpty
-    private int id_post;
+    private int postId;
 
     @NotNull
     @NotEmpty
@@ -32,9 +32,9 @@ public class PostForm {
     public PostForm() {
     }
 
-    public PostForm(int userId, int id_post, Date date, ProductForm detail, int category, double price) {
+    public PostForm(int userId, int postId, Date date, ProductForm detail, int category, double price) {
         this.userId = userId;
-        this.id_post = id_post;
+        this.postId = postId;
         this.date = date;
         this.detail = detail;
         this.category = category;
@@ -45,8 +45,8 @@ public class PostForm {
         return userId;
     }
 
-    public int getId_post() {
-        return id_post;
+    public int getPostId() {
+        return postId;
     }
 
     public Date getDate() {
