@@ -1,31 +1,29 @@
-package br.com.bootcamp.desafio_spring.entity;
+package br.com.bootcamp.desafio_spring.dto;
 
 import java.util.List;
 
-public class Seller implements IEntity{
-    private Integer ID;
+public class SellerDTO {
+    private Integer id;
     private String userName;
-    private List<User> followers;
-    private List<Post> posts;
+    private List<UserDTO> followers;
+    private List<PostDTO> postDTOs;
 
-    public Seller() {
+    public SellerDTO() {
     }
 
-    public Seller(Integer ID, String userName, List<User> followers, List<Post> posts) {
-        this.ID = ID;
+    public SellerDTO(Integer id, String userName, List<UserDTO> followers, List<PostDTO> postDTOs) {
+        this.id = id;
         this.userName = userName;
         this.followers = followers;
-        this.posts = posts;
+        this.postDTOs = postDTOs;
     }
 
-    @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -36,19 +34,19 @@ public class Seller implements IEntity{
         this.userName = userName;
     }
 
-    public List<User> getFollowers() {
+    public List<UserDTO> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(List<User> followers) {
+    public void setFollowers(List<UserDTO> followers) {
         this.followers = followers;
     }
 
-    public List<Post> getPosts() {
-        return posts;
+    public List<PostDTO> getPostDTOS() {
+        return postDTOS;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setPostDTOS(List<PostDTO> postDTOS) {
+        this.postDTOS = postDTOS;
     }
 }
