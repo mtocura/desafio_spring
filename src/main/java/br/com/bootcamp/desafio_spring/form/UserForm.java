@@ -9,14 +9,22 @@ public class UserForm {
     @NotBlank(message = "O nome do usuário não pode ser espaços em branco ou nulo")
     private String name;
 
+    @NotNull(message = "O atributo que identifica se um usuário é vendedor não pode ser nulo")
+    private boolean isSeller;
+
     public UserForm() {
     }
 
-    public UserForm(String name) {
+    public UserForm(String name, boolean isSeller) {
         this.name = name;
+        this.isSeller = isSeller;
     }
 
     public String getName() {
         return name;
+    }
+
+    public boolean getIsSeller() {
+        return isSeller;
     }
 }
