@@ -44,10 +44,10 @@ public class SellerService {
                 }
                 return UserHandler.convertSellerFollowers(userId, user.getName(), followerUsers);
             }else{
-                throw new UserNotExistException("Usuário " + userId + " não é vendedor. ");
+                throw new UserNotExistException("Usuário " + userId + " não é vendedor.");
             }
         }catch (IOException e){
-            throw new DatabaseException("Falha ao tentar acessar o banco de dados. ");
+            throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
         }
     }
 }
