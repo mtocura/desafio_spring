@@ -1,5 +1,6 @@
 package br.com.bootcamp.desafio_spring.handler;
 
+import br.com.bootcamp.desafio_spring.dto.ProductDTO;
 import br.com.bootcamp.desafio_spring.entity.Product;
 import br.com.bootcamp.desafio_spring.form.ProductForm;
 
@@ -21,5 +22,16 @@ public class ProductHandler {
 
     public Map<String, String> validate(ProductForm productForm) {
         return null;
+    }
+
+    public static ProductDTO convert(Product product) {
+        return new ProductDTO(
+                product.getID(),
+                product.getName(),
+                product.getType(),
+                product.getBrand(),
+                product.getColor(),
+                product.getNotes()
+        );
     }
 }
