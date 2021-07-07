@@ -1,6 +1,5 @@
 package br.com.bootcamp.desafio_spring.service;
 
-import br.com.bootcamp.desafio_spring.dto.SellerPostsDTO;
 import br.com.bootcamp.desafio_spring.dto.UserDefaultDTO;
 import br.com.bootcamp.desafio_spring.dto.UserFollowingListDTO;
 import br.com.bootcamp.desafio_spring.entity.User;
@@ -58,7 +57,7 @@ public class UserService {
                 throw new UserNotExistException("Usuário " + userId + " não encontrado");
             }
 
-            List<UserFollow> followedSellersRelationship = userFollowRepository.getByUserId(userId);
+            List<UserFollow> followedSellersRelationship = userFollowRepository.getUserFollowed(userId);
 
             List<User> followedSellers = new ArrayList<>();
 
