@@ -11,13 +11,48 @@ import java.util.List;
 import java.util.Map;
 
 public class State {
-
+    private int nextPostId;
+    private int nextProductId;
+    private int nextUserId;
+    private int nextUserFollowId;
     private Map<Integer, Post> posts;
     private Map<Integer, Product> products;
     private Map<Integer, User> users;
     private List<UserFollow> userFollows;
 
     public State() {
+    }
+
+    public int getNextPostId() {
+        return nextPostId++;
+    }
+
+    public void setNextPostId(int nextPostId) {
+        this.nextPostId = nextPostId;
+    }
+
+    public int getNextProductId() {
+        return nextProductId++;
+    }
+
+    public void setNextProductId(int nextProductId) {
+        this.nextProductId = nextProductId;
+    }
+
+    public int getNextUserId() {
+        return nextUserId++;
+    }
+
+    public void setNextUserId(int nextUserId) {
+        this.nextUserId = nextUserId;
+    }
+
+    public int getNextUserFollowId() {
+        return nextUserFollowId++;
+    }
+
+    public void setNextUserFollowId(int nextUserFollowId) {
+        this.nextUserFollowId = nextUserFollowId;
     }
 
     public Map<Integer, Post> getPosts() {
