@@ -1,9 +1,7 @@
 package br.com.bootcamp.desafio_spring.handler;
 
 import br.com.bootcamp.desafio_spring.dto.PostDTO;
-import br.com.bootcamp.desafio_spring.dto.ProductDTO;
 import br.com.bootcamp.desafio_spring.entity.Post;
-import br.com.bootcamp.desafio_spring.entity.Product;
 import br.com.bootcamp.desafio_spring.form.PostForm;
 
 import java.util.Date;
@@ -41,4 +39,5 @@ public class PostHandler {
                 post.getPrice()
         );
     }
+
 }
