@@ -2,8 +2,12 @@ package br.com.bootcamp.desafio_spring.controller;
 
 import br.com.bootcamp.desafio_spring.service.UserFollowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -17,5 +21,10 @@ public class UserFollowController {
     @Autowired
     public UserFollowController(UserFollowService userFollowService) {
         this.userFollowService = userFollowService;
+    }
+
+    @PostMapping("/users/{userId}/follow/{userIdToFollow}")
+    public void follow(@PathVariable int userId, @PathVariable int userIdToFollow) throws IOException {
+        this.userFollowService.follow(userId, userIdToFollow);
     }
 }

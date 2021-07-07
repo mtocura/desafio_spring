@@ -13,6 +13,16 @@ import java.util.Map;
 public class UserFollowRepository extends Repository<UserFollow> {
     private int nextID;
 
+    public UserFollow get(int userID, int sellerID) throws IOException {
+        List<UserFollow> state = Storage.getInstance().load().getUserFollows();
+        for (UserFollow uf : state) {
+            if (uf.getUser() == userID && uf.getSeller() == sellerID) {
+                return uf;
+            }
+        }
+        return null;
+    }
+
     public List<UserFollow> getByUserId(int userID) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
