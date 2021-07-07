@@ -12,13 +12,11 @@ public class State {
 
     private Map<Integer, Post> posts;
     private Map<Integer, Product> products;
-    private Map<Integer, Seller> sellers;
     private Map<Integer, User> users;
 
     public State() {
         this.posts = new HashMap<>();
         this.products = new HashMap<>();
-        this.sellers = new HashMap<>();
         this.users = new HashMap<>();
     }
 
@@ -38,14 +36,6 @@ public class State {
         this.products = products;
     }
 
-    public Map<Integer, Seller> getSellers() {
-        return sellers;
-    }
-
-    public void setSellers(Map<Integer, Seller> sellers) {
-        this.sellers = sellers;
-    }
-
     public Map<Integer, User> getUsers() {
         return users;
     }
@@ -60,7 +50,6 @@ public class State {
         return "State{" +
                 "posts=" + posts +
                 ", products=" + products +
-                ", sellers=" + sellers +
                 ", users=" + users +
                 '}';
     }
