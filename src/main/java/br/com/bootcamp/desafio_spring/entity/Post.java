@@ -1,11 +1,13 @@
 package br.com.bootcamp.desafio_spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Post implements IEntity {
+    @JsonProperty("ID")
     private Integer ID;
     private Double price;
     private Integer category;
