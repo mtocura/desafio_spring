@@ -3,7 +3,10 @@ package br.com.bootcamp.desafio_spring.storage;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.Product;
 import br.com.bootcamp.desafio_spring.entity.User;
+import br.com.bootcamp.desafio_spring.entity.UserFollow;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class State {
@@ -11,7 +14,7 @@ public class State {
     private Map<Integer, Post> posts;
     private Map<Integer, Product> products;
     private Map<Integer, User> users;
-    private Map<Integer, UserFollow> userFollow;
+    private List<UserFollow> userFollows;
 
     public State() {
         this.posts = new HashMap<>();
@@ -43,12 +46,12 @@ public class State {
         this.users = users;
     }
 
-    public Map<Integer, UserFollow> getUserFollow() {
-        return userFollow;
+    public List<UserFollow> getUserFollows() {
+        return userFollows;
     }
 
-    public void setUserFollow(Map<Integer, UserFollow> userFollow) {
-        this.userFollow = userFollow;
+    public void setUserFollows(List<UserFollow> userFollows) {
+        this.userFollows = userFollows;
     }
 
     @Override
@@ -56,8 +59,8 @@ public class State {
         return "State{" +
                 "posts=" + posts +
                 ", products=" + products +
+                ", userFollows=" + userFollows +
                 ", users=" + users +
-                ", userFollow=" + userFollow +
                 '}';
     }
 }
