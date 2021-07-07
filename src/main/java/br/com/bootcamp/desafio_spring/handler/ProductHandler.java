@@ -19,7 +19,7 @@ public class ProductHandler {
 
     public static ProductDTO convert(Product product) {
         return new ProductDTO(
-                product.getID(),
+                product.getId(),
                 product.getName(),
                 product.getType(),
                 product.getBrand(),

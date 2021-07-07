@@ -25,29 +25,29 @@ public class UserFollowService {
         this.userFollowRepository = userFollowRepository;
     }
 
-    public void follow(int userID, int sellerID)  {
+    public void follow(int userId, int sellerId)  {
         try {
-            if (userID == sellerID) {
+            if (userId == sellerId) {
                 throw new InvalidFollowException("Um usuário não seguir-se");
             }
 
-            User user = this.userRepository.getById(userID);
+            User user = this.userRepository.getById(userId);
             if (user == null) {
-                throw new UserNotExistException("Usuário " + userID + " não encontrado");
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
             }
 
-            User seller = this.userRepository.getById(sellerID);
+            User seller = this.userRepository.getById(sellerId);
 
             if (seller == null) {
-                throw new UserNotExistException("Vendedor " + userID + " não encontrado");
+                throw new UserNotExistException("Vendedor " + userId + " não encontrado");
             }
             if (!seller.getIsSeller()) {
-                throw new UserIsNotSellerException("Usuario " + sellerID + " não é um vendedor e não pode ser seguido");
+                throw new UserIsNotSellerException("Usuario " + sellerId + " não é um vendedor e não pode ser seguido");
             }
 
-            UserFollow uf = this.userFollowRepository.get(userID, sellerID);
+            UserFollow uf = this.userFollowRepository.get(userId, sellerId);
             if (uf == null) {
-                this.userFollowRepository.save(new UserFollow(userID, sellerID));
+                this.userFollowRepository.save(new UserFollow(userId, sellerId));
             }
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
@@ -56,27 +56,27 @@ public class UserFollowService {
 
 
 
-    public void unfollow(int userID, int sellerID) {
+    public void unfollow(int userId, int sellerId) {
         try {
-            User user = this.userRepository.getById(userID);
+            User user = this.userRepository.getById(userId);
             if (user == null) {
-                throw new UserNotExistException("Usuário " + userID + " não encontrado");
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
             }
 
-            User seller = this.userRepository.getById(sellerID);
+            User seller = this.userRepository.getById(sellerId);
             if (seller == null) {
-                throw new UserNotExistException("Vendedor " + userID + " não encontrado");
+                throw new UserNotExistException("Vendedor " + userId + " não encontrado");
             }
 
             if (!seller.getIsSeller()) {
-                throw new UserIsNotSellerException("Usuário " + sellerID + " não é um vendedor e não pode deixar de ser seguido");
+                throw new UserIsNotSellerException("Usuário " + sellerId + " não é um vendedor e não pode deixar de ser seguido");
             }
 
-            UserFollow uf = this.userFollowRepository.get(userID, sellerID);
+            UserFollow uf = this.userFollowRepository.get(userId, sellerId);
             if (uf != null) {
                 this.userFollowRepository.remove(uf);
             } else {
-                throw new SellerIsNotFollowedException("Usuário" + userID + " não segue vendedor " + sellerID);
+                throw new SellerIsNotFollowedException("Usuário" + userId + " não segue vendedor " + sellerId);
             }
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());

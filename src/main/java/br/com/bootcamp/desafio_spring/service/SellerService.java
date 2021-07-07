@@ -25,19 +25,19 @@ public class SellerService {
         this.userFollowRepository = userFollowRepository;
     }
 
-    public SellerFollowersCountDTO sellerFollowersCount(int userID) {
+    public SellerFollowersCountDTO sellerFollowersCount(int userId) {
         try {
-            User seller = this.userRepository.getById(userID);
+            User seller = this.userRepository.getById(userId);
             if (seller == null) {
-                throw new UserNotExistException("Usuário " + userID + " não encontrado");
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
             }
 
             if (!seller.getIsSeller()) {
-                throw new UserIsNotSellerException("Usuário " + seller.getID() + " não é um vendedor e não pode ter seguidores");
+                throw new UserIsNotSellerException("Usuário " + seller.getId() + " não é um vendedor e não pode ter seguidores");
             }
 
-            List<UserFollow> sellerFollowers = this.userFollowRepository.getBySellerId(seller.getID());
-            return new SellerFollowersCountDTO(seller.getID(), seller.getName(), sellerFollowers.size());
+            List<UserFollow> sellerFollowers = this.userFollowRepository.getBySellerId(seller.getId());
+            return new SellerFollowersCountDTO(seller.getId(), seller.getName(), sellerFollowers.size());
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
         }

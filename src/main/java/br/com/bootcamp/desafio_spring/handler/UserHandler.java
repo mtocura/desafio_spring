@@ -20,7 +20,7 @@ public class UserHandler {
     }
 
     public static UserDefaultDTO convert(User user) {
-        return new UserDefaultDTO(user.getID(), user.getName());
+        return new UserDefaultDTO(user.getId(), user.getName());
     }
 
     // Método para converter a lista de todos os usuários que o usuário selecionado para DTOs

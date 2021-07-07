@@ -11,44 +11,44 @@ import java.util.Map;
 
 @org.springframework.stereotype.Repository
 public class UserFollowRepository extends Repository<UserFollow> {
-    private int nextID;
+    private int nextId;
 
-    public UserFollow get(int userID, int sellerID) throws IOException {
+    public UserFollow get(int userId, int sellerId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         for (UserFollow uf : state) {
-            if (uf.getUser() == userID && uf.getSeller() == sellerID) {
+            if (uf.getUser() == userId && uf.getSeller() == sellerId) {
                 return uf;
             }
         }
         return null;
     }
 
-    public List<UserFollow> getUserFollowed(int userID) throws IOException {
+    public List<UserFollow> getByUserId(int userId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
 
         for (UserFollow uf : state) {
-            if (uf.getUser() == userID) {
+            if (uf.getUser() == userId) {
                 res.add(uf);
             }
         }
         return res;
     }
 
-    public List<UserFollow> getSellerFollowed(int sellerID) throws IOException {
+    public List<UserFollow> getBySellerId(int sellerId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
 
         for (UserFollow uf : state) {
-            if (uf.getSeller() == sellerID) {
+            if (uf.getSeller() == sellerId) {
                 res.add(uf);
             }
         }
         return res;
     }
 
-    public void remove(int userID, int sellerID) throws IOException {
-        this.remove(new UserFollow(userID, sellerID));
+    public void remove(int userId, int sellerId) throws IOException {
+        this.remove(new UserFollow(userId, sellerId));
     }
 
     public void remove(UserFollow r) throws IOException {
@@ -66,7 +66,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
         for (UserFollow uf : state) {
-            if (ids.contains(uf.getID())) {
+            if (ids.contains(uf.getId())) {
                 res.add(uf);
             }
         }
@@ -81,7 +81,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
     @Override
     public int save(UserFollow p) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
-        int id = nextID++;
+        int id = nextId++;
 
         for (UserFollow uf : state) {
             if (uf.equals(p)) {
@@ -89,7 +89,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
             }
         }
 
-        p.setID(id);
+        p.setId(id);
         state.add(p);
         Storage.getInstance().flush();
         return id;
@@ -98,7 +98,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
     @Override
     public int update(UserFollow p) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
-        int id = nextID++;
+        int id = nextId++;
 
         for (UserFollow uf : state) {
             if (uf.equals(p)) {

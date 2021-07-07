@@ -39,7 +39,7 @@ public abstract class Repository<T extends IEntity> {
         Map<Integer, T> entities = this.getState(s);
 
         int id = nextID++;
-        p.setID(id);
+        p.setId(id);
 
         entities.put(id, p);
         Storage.getInstance().flush();
@@ -50,9 +50,9 @@ public abstract class Repository<T extends IEntity> {
         State s = Storage.getInstance().load();
         Map<Integer, T> entities = this.getState(s);
 
-        entities.put(p.getID(), p);
+        entities.put(p.getId(), p);
         Storage.getInstance().flush();
-        return p.getID();
+        return p.getId();
     }
 
     public void remove(int id) throws IOException {

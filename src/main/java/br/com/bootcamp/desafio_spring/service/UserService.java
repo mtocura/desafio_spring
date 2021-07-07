@@ -62,7 +62,7 @@ public class UserService {
             List<User> followedSellers = new ArrayList<>();
 
             for (UserFollow userFollow : followedSellersRelationship) {
-                User seller = userRepository.getById(userFollow.getID());
+                User seller = userRepository.getById(userFollow.getId());
 
                 followedSellers.add(seller);
             }

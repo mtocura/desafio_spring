@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements IEntity {
-    @JsonProperty("ID")
-    private Integer ID;
+    private Integer id;
     private String name;
     private String type;
     private String brand;
@@ -16,8 +15,8 @@ public class Product implements IEntity {
     public Product() {
     }
 
-    public Product(Integer ID, String name, String type, String brand, String color, String notes) {
-        this.ID = ID;
+    public Product(Integer id, String name, String type, String brand, String color, String notes) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.brand = brand;
@@ -26,13 +25,13 @@ public class Product implements IEntity {
     }
 
     @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
