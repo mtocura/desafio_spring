@@ -12,4 +12,9 @@ public class UserRepository extends Repository<User>{
     protected Map<Integer, User> getState(State s) {
         return s.getUsers();
     }
+
+    @Override
+    protected int generatesNextId(State s) {
+        return s.getNextUserId();
+    }
 }

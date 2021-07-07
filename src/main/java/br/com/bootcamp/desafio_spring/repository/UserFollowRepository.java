@@ -11,7 +11,6 @@ import java.util.Map;
 
 @org.springframework.stereotype.Repository
 public class UserFollowRepository extends Repository<UserFollow> {
-    private int nextId;
 
     public UserFollow get(int userId, int sellerId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
@@ -80,8 +79,10 @@ public class UserFollowRepository extends Repository<UserFollow> {
 
     @Override
     public int save(UserFollow p) throws IOException {
-        List<UserFollow> state = Storage.getInstance().load().getUserFollows();
-        int id = nextId++;
+        State s = Storage.getInstance().load();
+        List<UserFollow> state = s.getUserFollows();
+
+        int id = this.generatesNextId(s);
 
         for (UserFollow uf : state) {
             if (uf.equals(p)) {
@@ -97,8 +98,9 @@ public class UserFollowRepository extends Repository<UserFollow> {
 
     @Override
     public int update(UserFollow p) throws IOException {
-        List<UserFollow> state = Storage.getInstance().load().getUserFollows();
-        int id = nextId++;
+        State s = Storage.getInstance().load();
+        List<UserFollow> state = s.getUserFollows();
+        int id = this.generatesNextId(s);
 
         for (UserFollow uf : state) {
             if (uf.equals(p)) {
@@ -120,5 +122,10 @@ public class UserFollowRepository extends Repository<UserFollow> {
     @Override
     protected Map<Integer, UserFollow> getState(State s) {
         return null;
+    }
+
+    @Override
+    protected int generatesNextId(State s) {
+        return s.getNextUserFollowId();
     }
 }
