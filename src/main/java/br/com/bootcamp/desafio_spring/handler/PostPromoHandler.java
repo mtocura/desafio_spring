@@ -1,10 +1,14 @@
 package br.com.bootcamp.desafio_spring.handler;
 
+import br.com.bootcamp.desafio_spring.dto.PostDTO;
 import br.com.bootcamp.desafio_spring.dto.PostPromoDTO;
+import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsDTO;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.form.PostPromoForm;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class PostPromoHandler {
@@ -37,5 +41,14 @@ public class PostPromoHandler {
                 post.getHasPromo(),
                 post.getDiscount()
         );
+    }
+
+    public static SellerPromoPostsDTO convertSellerPromoPostsDTO(Integer userID, String userName, List<Post> postList) {
+        List<PostPromoDTO> postPromoDTOS = new ArrayList<>();
+        for (Post post: postList) {
+            postPromoDTOS.add(PostPromoHandler.convert(post));
+        }
+
+        return new SellerPromoPostsDTO(userID, userName, postPromoDTOS);
     }
 }
