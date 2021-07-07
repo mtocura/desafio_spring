@@ -34,17 +34,17 @@ public class SellerService {
             if(user == null){
                 throw new UserNotExistException("Vendedor " + userId + " não encontrado.");
             }
-            if(user.isSeller()){
-                List <UserFollow> l = userFollowRepository.getByUserId(userId);
-                List <User> u = new ArrayList<>();
+            if(user.getIsSeller()){
+                List <UserFollow> followerUserRelationship = userFollowRepository.getBySellerId(userId);
+                List <User> followerUsers = new ArrayList<>();
 
-                for (UserFollow userFollow : l){
-                    User seller = userRepository.getById(userFollow.getID());
-                    u.add(seller);
+                for (UserFollow userFollow : followerUserRelationship){
+                    User userFollower = userRepository.getById(userFollow.getUser());
+                    followerUsers.add(userFollower);
                 }
-                return UserHandler.convertSellerFollowers(userId, user.getName(), u);
+                return UserHandler.convertSellerFollowers(userId, user.getName(), followerUsers);
             }else{
-                throw new UserNotExistException("Vendedor " + userId + " não possui seguidores. ");
+                throw new UserNotExistException("Usuário " + userId + " não é vendedor. ");
             }
         }catch (IOException e){
             throw new DatabaseException("Falha ao tentar acessar o banco de dados. ");
