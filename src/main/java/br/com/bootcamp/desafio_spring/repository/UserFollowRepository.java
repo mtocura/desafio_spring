@@ -23,7 +23,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
         return null;
     }
 
-    public List<UserFollow> getByUserId(int userId) throws IOException {
+    public List<UserFollow> getUserFollowed(int userId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
         return res;
     }
 
-    public List<UserFollow> getBySellerId(int sellerId) throws IOException {
+    public List<UserFollow> getBySellerFollowers(int sellerId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
 
