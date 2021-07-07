@@ -2,10 +2,8 @@ package br.com.bootcamp.desafio_spring.exception.handler;
 
 import br.com.bootcamp.desafio_spring.dto.ExceptionDTO;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
-import br.com.bootcamp.desafio_spring.exception.InvalidUserException;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +39,6 @@ public class SocialMeliExceptionHandler {
 
     @ExceptionHandler(UserIsNotSellerException.class)
     public ResponseEntity<?> userIsNotSellerHandler(UserIsNotSellerException e) {
-        return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
-    }
-
-    @ExceptionHandler(InvalidUserException.class)
-    public ResponseEntity<?> userIsNotSellerHandler(InvalidUserException e) {
         return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
     }
 
