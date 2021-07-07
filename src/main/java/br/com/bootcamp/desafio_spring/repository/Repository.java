@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Respository<T extends IEntity> {
+public abstract class Repository<T extends IEntity> {
     private int nextID;
 
     public T getById(int id) throws IOException {
