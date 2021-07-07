@@ -1,19 +1,15 @@
 package br.com.bootcamp.desafio_spring.entity;
 
-import java.util.List;
-
 public class User implements IEntity {
     private Integer ID;
     private String name;
-    private List<Seller> following;
 
     public User() {
     }
 
-    public User(Integer ID, String name, List<Seller> following) {
+    public User(Integer ID, String name) {
         this.ID = ID;
         this.name = name;
-        this.following = following;
     }
 
     @Override
@@ -34,20 +30,11 @@ public class User implements IEntity {
         this.name = name;
     }
 
-    public List<Seller> getFollowing() {
-        return following;
-    }
-
-    public void setFollowing(List<Seller> following) {
-        this.following = following;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
-                ", following=" + following +
                 '}';
     }
 
