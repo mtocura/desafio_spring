@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class SocialMeliExceptionHandler {
         return ResponseEntity.badRequest().body(new ExceptioDTO(e.getMessage()));
     }
 
-    @ExceptionHandler(DatabaseException.class)
-    public ResponseEntity<?> userNotExistHandler(DatabaseException e) {
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<?> userNotExistHandler(IOException e) {
         return ResponseEntity.badRequest().body(new ExceptioDTO(e.getMessage()));
     }
 
