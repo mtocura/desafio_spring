@@ -1,54 +1,80 @@
 package br.com.bootcamp.desafio_spring.dto;
 
-import java.util.List;
+import java.util.Date;
 
 public class PostPromoDTO {
-    private Integer userId;
-    private String userName;
-    private Integer promoProductsCount;
-    private List<PostDTO> promoPosts;
 
-    public PostPromoDTO(Integer userId, String userName, Integer promoProductsCount) {
-        this.userId = userId;
-        this.userName = userName;
-        this.promoProductsCount = promoProductsCount;
+    private Integer id_post;
+    private Date date;
+    private ProductDTO detail;
+    private Integer category;
+    private Double price;
+    private boolean hasPromo;
+    private Double discount;
+
+    public PostPromoDTO(Integer id_post, Date date, ProductDTO detail, Integer category, Double price, boolean hasPromo, Double discount) {
+        this.id_post = id_post;
+        this.date = date;
+        this.detail = detail;
+        this.category = category;
+        this.price = price;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
     }
 
-    public PostPromoDTO(Integer userId, String userName, List<PostDTO> promoPosts) {
-        this.userId = userId;
-        this.userName = userName;
-        this.promoPosts = promoPosts;
+    public Integer getId_post() {
+        return id_post;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setId_post(Integer id_post) {
+        this.id_post = id_post;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public Date getDate() {
+        return date;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public ProductDTO getDetail() {
+        return detail;
     }
 
-    public Integer getPromoProductsCount() {
-        return promoProductsCount;
+    public void setDetail(ProductDTO detail) {
+        this.detail = detail;
     }
 
-    public void setPromoProductsCount(Integer promoProductsCount) {
-        this.promoProductsCount = promoProductsCount;
+    public Integer getCategory() {
+        return category;
     }
 
-    public List<PostDTO> getPromoPosts() {
-        return promoPosts;
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 
-    public void setPromoPosts(List<PostDTO> promoPosts) {
-        this.promoPosts = promoPosts;
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public boolean isHasPromo() {
+        return hasPromo;
+    }
+
+    public void setHasPromo(boolean hasPromo) {
+        this.hasPromo = hasPromo;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 }
