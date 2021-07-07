@@ -9,6 +9,7 @@ import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +53,38 @@ public class UserService {
                 followedSellers.add(seller);
             }
 
+
+            return UserHandler.convertFollowingUsers(userId, user.getName(), followedSellers);
+        } catch (IOException e) {
+            throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
+        }
+    }
+
+    public UserFollowingListDTO followedList(int userId, String order) {
+        try {
+            User user = userRepository.getById(userId);
+
+            if(user == null) {
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
+            }
+
+            List<UserFollow> followedSellersRelationship = userFollowRepository.getByUserId(userId);
+
+            List<User> followedSellers = new ArrayList<>();
+
+            for (UserFollow userFollow : followedSellersRelationship) {
+                User seller = userRepository.getById(userFollow.getID());
+
+                followedSellers.add(seller);
+            }
+
+            if(order.equals("name_asc")) {
+                SortByName.sortByNameASC(followedSellers);
+            }
+
+            if(order.equals("name_desc")) {
+                SortByName.sortByNameDESC(followedSellers);
+            }
 
             return UserHandler.convertFollowingUsers(userId, user.getName(), followedSellers);
         } catch (IOException e) {
