@@ -1,5 +1,6 @@
 package br.com.bootcamp.desafio_spring.exception.handler;
 
+import br.com.bootcamp.desafio_spring.dto.ExceptionDTO;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,12 @@ public class SocialMeliExceptionHandler {
 
     @ExceptionHandler(UserNotExistException.class)
     public ResponseEntity<?> userNotExistHandler(UserNotExistException e) {
-        return ResponseEntity.badRequest().body(new ExceptioDTO(e.getMessage()));
+        return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
     }
 
     @ExceptionHandler(IOException.class)
     public ResponseEntity<?> userNotExistHandler(IOException e) {
-        return ResponseEntity.badRequest().body(new ExceptioDTO(e.getMessage()));
+        return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
     }
 
     // cria um ExceptionDTO para cada atributo que viola alguma validação
