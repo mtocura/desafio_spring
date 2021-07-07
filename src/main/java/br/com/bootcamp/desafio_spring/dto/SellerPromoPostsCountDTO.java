@@ -1,15 +1,18 @@
 package br.com.bootcamp.desafio_spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SellerPromoPostsCountDTO {
 
     private Integer userId;
     private String userName;
-    private Integer promoproducts_count;
+    @JsonProperty("promoproducts_count")
+    private Integer promoProductsCount;
 
-    public SellerPromoPostsCountDTO(Integer userId, String userName, Integer promoproducts_count) {
+    public SellerPromoPostsCountDTO(Integer userId, String userName, Integer promoProductsCount) {
         this.userId = userId;
         this.userName = userName;
-        this.promoproducts_count = promoproducts_count;
+        this.promoProductsCount = promoProductsCount;
     }
 
     public Integer getUserId() {
@@ -28,11 +31,11 @@ public class SellerPromoPostsCountDTO {
         this.userName = userName;
     }
 
-    public Integer getPromoproducts_count() {
-        return promoproducts_count;
+    public Integer getPromoProductsCount() {
+        return promoProductsCount;
     }
 
-    public void setPromoproducts_count(Integer promoproducts_count) {
-        this.promoproducts_count = promoproducts_count;
+    public void setPromoProductsCount(Integer promoProductsCount) {
+        this.promoProductsCount = promoProductsCount;
     }
 }

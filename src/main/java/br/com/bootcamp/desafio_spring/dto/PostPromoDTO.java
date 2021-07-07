@@ -1,10 +1,13 @@
 package br.com.bootcamp.desafio_spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class PostPromoDTO {
 
-    private Integer id_post;
+    @JsonProperty("id_post")
+    private Integer postID;
     private Date date;
     private ProductDTO detail;
     private Integer category;
@@ -12,8 +15,8 @@ public class PostPromoDTO {
     private boolean hasPromo;
     private Double discount;
 
-    public PostPromoDTO(Integer id_post, Date date, ProductDTO detail, Integer category, Double price, boolean hasPromo, Double discount) {
-        this.id_post = id_post;
+    public PostPromoDTO(Integer postID, Date date, ProductDTO detail, Integer category, Double price, boolean hasPromo, Double discount) {
+        this.postID = postID;
         this.date = date;
         this.detail = detail;
         this.category = category;
@@ -22,12 +25,12 @@ public class PostPromoDTO {
         this.discount = discount;
     }
 
-    public Integer getId_post() {
-        return id_post;
+    public Integer getPostID() {
+        return postID;
     }
 
-    public void setId_post(Integer id_post) {
-        this.id_post = id_post;
+    public void setPostID(Integer postID) {
+        this.postID = postID;
     }
 
     public Date getDate() {

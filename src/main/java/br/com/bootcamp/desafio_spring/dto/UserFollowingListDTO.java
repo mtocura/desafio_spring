@@ -4,22 +4,22 @@ import java.util.List;
 
 public class UserFollowingListDTO {
 
-    private Integer userId;
+    private Integer userID;
     private String userName;
     private List<UserDefaultDTO> followed;
 
-    public UserFollowingListDTO(Integer userId, String userName, List<UserDefaultDTO> followed) {
-        this.userId = userId;
+    public UserFollowingListDTO(Integer userID, String userName, List<UserDefaultDTO> followed) {
+        this.userID = userID;
         this.userName = userName;
         this.followed = followed;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
