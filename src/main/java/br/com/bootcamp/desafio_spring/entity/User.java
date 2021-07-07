@@ -43,11 +43,11 @@ public class User implements IEntity {
         this.name = name;
     }
 
-    public boolean isSeller() {
+    public boolean getIsSeller() {
         return isSeller;
     }
 
-    public void setSeller(boolean seller) {
+    public void setIsSeller(boolean seller) {
         isSeller = seller;
     }
 
@@ -64,7 +64,8 @@ public class User implements IEntity {
         return "User{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
+                ", isSeller=" + isSeller +
+                ", posts=" + posts +
                 '}';
     }
-
 }
