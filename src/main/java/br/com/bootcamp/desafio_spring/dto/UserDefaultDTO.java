@@ -1,20 +1,28 @@
 package br.com.bootcamp.desafio_spring.dto;
 
-public class UserDTO {
-    private Integer id;
+public class UserDefaultDTO {
+    private Integer userId;
+    private String userName;
 
-    //private String name;
-    //private List<SellerDTO> following;
 
-    public UserDTO(Integer id) {
-        this.id = id;
+    public UserDefaultDTO(Integer userId, String userName) {
+        this.userId = userId;
+        this.userName = userName;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
