@@ -2,6 +2,7 @@ package br.com.bootcamp.desafio_spring.service;
 
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
+import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.InvalidFollowException;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
@@ -23,27 +24,31 @@ public class UserFollowService {
         this.userFollowRepository = userFollowRepository;
     }
 
-    public void follow(int userID, int sellerID) throws IOException {
-        if (userID == sellerID) {
-            throw new InvalidFollowException("Um usuário não seguir-se");
-        }
+    public void follow(int userID, int sellerID)  {
+        try {
+            if (userID == sellerID) {
+                throw new InvalidFollowException("Um usuário não seguir-se");
+            }
 
-        User user = this.userRepository.getById(userID);
-        if (user == null) {
-            throw new UserNotExistException("Usuário " + userID + " não encontrado");
-        }
+            User user = this.userRepository.getById(userID);
+            if (user == null) {
+                throw new UserNotExistException("Usuário " + userID + " não encontrado");
+            }
 
-        User seller = this.userRepository.getById(sellerID);
-        if (seller == null) {
-            throw new UserNotExistException("Vendedor " + userID + " não encontrado");
-        }
-        if (!seller.isSeller()) {
-            throw new UserIsNotSellerException("Usuario " + sellerID + " não é um vendedor e não pode ser seguido");
-        }
+            User seller = this.userRepository.getById(sellerID);
+            if (seller == null) {
+                throw new UserNotExistException("Vendedor " + userID + " não encontrado");
+            }
+            if (!seller.isSeller()) {
+                throw new UserIsNotSellerException("Usuario " + sellerID + " não é um vendedor e não pode ser seguido");
+            }
 
-        UserFollow uf = this.userFollowRepository.get(userID, sellerID);
-        if (uf == null) {
-            this.userFollowRepository.save(new UserFollow(userID, sellerID));
+            UserFollow uf = this.userFollowRepository.get(userID, sellerID);
+            if (uf == null) {
+                this.userFollowRepository.save(new UserFollow(userID, sellerID));
+            }
+        } catch (IOException e) {
+            throw new DatabaseException(e.getMessage());
         }
     }
 }

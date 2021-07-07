@@ -24,7 +24,7 @@ public class UserFollowController {
     }
 
     @PostMapping("/users/{userId}/follow/{userIdToFollow}")
-    public void follow(@PathVariable int userId, @PathVariable int userIdToFollow) throws IOException {
+    public void follow(@PathVariable int userId, @PathVariable int userIdToFollow) {
         this.userFollowService.follow(userId, userIdToFollow);
     }
 }
