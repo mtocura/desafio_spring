@@ -6,14 +6,14 @@ import br.com.bootcamp.desafio_spring.form.PostForm;
 import java.util.Date;
 import java.util.Map;
 
-public class PostFormHandler {
+public class PostHandler {
 
     public static Post create(PostForm postForm) {
         return new Post(
                 postForm.getPostId(),
                 postForm.getPrice(),
                 postForm.getCategory(),
-                ProductFormHandler.create(postForm.getDetail()),
+                ProductHandler.create(postForm.getDetail()),
                 postForm.getUserId(),
                 false,
                 0.0,
@@ -21,7 +21,7 @@ public class PostFormHandler {
                 new Date()
         );
     }
-    
+
     public Map<String, String> validate(PostForm postForm) {
         return null;
     }

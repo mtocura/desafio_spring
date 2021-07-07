@@ -6,7 +6,7 @@ import br.com.bootcamp.desafio_spring.form.ProductForm;
 import java.io.IOException;
 import java.util.Map;
 
-public class ProductFormHandler{
+public class ProductHandler {
 
     public static Product create(ProductForm productForm) {
         return new Product(
