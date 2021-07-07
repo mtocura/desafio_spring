@@ -21,7 +21,7 @@ public class PostFormHandler {
                 new Date()
         );
     }
-
+    
     public Map<String, String> validate(PostForm postForm) {
         return null;
     }
