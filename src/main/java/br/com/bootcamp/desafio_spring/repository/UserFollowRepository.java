@@ -35,7 +35,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
         return res;
     }
 
-    public List<UserFollow> getBySellerFollowers(int sellerId) throws IOException {
+    public List<UserFollow> getSellerFollowers(int sellerId) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         List<UserFollow> res = new ArrayList<>();
 

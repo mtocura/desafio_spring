@@ -36,7 +36,7 @@ public class SellerService {
                 throw new UserIsNotSellerException("Usuário " + seller.getId() + " não é um vendedor e não pode ter seguidores");
             }
 
-            List<UserFollow> sellerFollowers = this.userFollowRepository.getBySellerId(seller.getId());
+            List<UserFollow> sellerFollowers = this.userFollowRepository.getSellerFollowers(seller.getId());
             return new SellerFollowersCountDTO(seller.getId(), seller.getName(), sellerFollowers.size());
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
