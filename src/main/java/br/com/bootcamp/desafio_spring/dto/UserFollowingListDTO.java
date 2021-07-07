@@ -2,13 +2,13 @@ package br.com.bootcamp.desafio_spring.dto;
 
 import java.util.List;
 
-public class UserFollowersListDTO {
+public class UserFollowingListDTO {
 
     private Integer userId;
     private String userName;
     private List<UserDefaultDTO> followed;
 
-    public UserFollowersListDTO(Integer userId, String userName, List<UserDefaultDTO> followed) {
+    public UserFollowingListDTO(Integer userId, String userName, List<UserDefaultDTO> followed) {
         this.userId = userId;
         this.userName = userName;
         this.followed = followed;
