@@ -35,31 +35,6 @@ public class UserService {
     /*
     Método que retorna uma lista de vendedores que um determinado usuário, seja ele vendedor ou não, segue.
      */
-    public UserFollowingListDTO followedList(int userId) {
-        try {
-            User user = userRepository.getById(userId);
-
-            if(user == null) {
-                throw new UserNotExistException("Usuário " + userId + " não encontrado");
-            }
-
-            List<UserFollow> followedSellersRelationship = userFollowRepository.getByUserId(userId);
-
-            List<User> followedSellers = new ArrayList<>();
-
-            for (UserFollow userFollow : followedSellersRelationship) {
-                User seller = userRepository.getById(userFollow.getID());
-
-                followedSellers.add(seller);
-            }
-
-
-            return UserHandler.convertFollowingUsers(userId, user.getName(), followedSellers);
-        } catch (IOException e) {
-            throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
-        }
-    }
-
     public UserFollowingListDTO followedList(int userId, String order) {
         try {
             User user = userRepository.getById(userId);
