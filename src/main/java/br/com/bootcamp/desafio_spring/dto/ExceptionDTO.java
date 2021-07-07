@@ -6,7 +6,6 @@ public class ExceptionDTO {
     private String mensagem;
 
     public ExceptionDTO(String mensagem) {
-        super();
         this.mensagem = mensagem;
     }
 
