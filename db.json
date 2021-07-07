@@ -1,6 +1,6 @@
 {
-  "users": [
-    {
+  "users": {
+    "1": {
       "ID": 1,
       "name": "Adriana Maiate",
       "isSeller": true,
@@ -25,7 +25,7 @@
         }
       ]
     },
-    {
+    "2": {
       "ID": 2,
       "name": "Amanda",
       "isSeller": true,
@@ -50,13 +50,13 @@
         }
       ]
     },
-    {
+    "3": {
       "ID": 3,
       "name": "Maurício",
       "isSeller": false,
       "posts": []
     },
-    {
+    "4": {
       "ID": 4,
       "name": "Angelo",
       "isSeller": true,
@@ -99,19 +99,19 @@
         }
       ]
     },
-    {
+    "5": {
       "ID": 5,
       "name": "João",
       "isSeller": false,
       "posts": []
     },
-    {
+    "6": {
       "ID": 6,
       "name": "Pedro",
       "isSeller": false,
       "posts": []
     },
-    {
+    "7": {
       "ID": 7,
       "name": "Kenyo",
       "isSeller": true,
@@ -136,5 +136,5 @@
         }
       ]
     }
-  ]
+  }
 }
