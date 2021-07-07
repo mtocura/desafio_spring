@@ -1,6 +1,7 @@
 package br.com.bootcamp.desafio_spring.exception.handler;
 
 import br.com.bootcamp.desafio_spring.dto.ExceptionDTO;
+import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,11 @@ public class SocialMeliExceptionHandler {
 
     @ExceptionHandler(IOException.class)
     public ResponseEntity<?> userNotExistHandler(IOException e) {
+        return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
+    }
+
+    @ExceptionHandler(UserIsNotSellerException.class)
+    public ResponseEntity<?> userIsNotSellerHandler(UserIsNotSellerException e) {
         return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
     }
 
