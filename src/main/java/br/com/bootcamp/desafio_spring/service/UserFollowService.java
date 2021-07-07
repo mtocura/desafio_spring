@@ -2,6 +2,7 @@ package br.com.bootcamp.desafio_spring.service;
 
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
+import br.com.bootcamp.desafio_spring.exception.InvalidFollowException;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
@@ -23,6 +24,10 @@ public class UserFollowService {
     }
 
     public void follow(int userID, int sellerID) throws IOException {
+        if (userID == sellerID) {
+            throw new InvalidFollowException("Um usuário não seguir-se");
+        }
+
         User user = this.userRepository.getById(userID);
         if (user == null) {
             throw new UserNotExistException("Usuário " + userID + " não encontrado");
