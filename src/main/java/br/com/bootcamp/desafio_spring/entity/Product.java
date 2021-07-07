@@ -1,9 +1,11 @@
 package br.com.bootcamp.desafio_spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements IEntity {
+    @JsonProperty("ID")
     private Integer ID;
     private String name;
     private String type;
