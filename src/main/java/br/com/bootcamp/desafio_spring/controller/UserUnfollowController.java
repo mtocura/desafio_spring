@@ -4,9 +4,11 @@ import br.com.bootcamp.desafio_spring.service.UserFollowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+@RestController("/api")
 public class UserUnfollowController {
 
     private UserFollowService userFollowService;
@@ -20,7 +22,7 @@ public class UserUnfollowController {
     }
 
     @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
-    public void unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) throws IOException {
+    public void unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
         this.userFollowService.unfollow(userId, userIdToUnfollow);
     }
 }
