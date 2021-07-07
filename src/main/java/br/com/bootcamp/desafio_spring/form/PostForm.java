@@ -1,35 +1,37 @@
 package br.com.bootcamp.desafio_spring.form;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 public class PostForm {
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "O id do usuário não pode ser nulo")
+    @Positive(message = "O id do usuário deve ser maior do que 0")
     private int userId;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "O id da publicação não pode ser nulo")
+    @Positive(message = "O id da publicação deve ser maior do que 0")
     @JsonProperty("id_post")
     private int postId;
 
-    @NotNull
-    @NotEmpty
+    @NotEmpty(message = "A data da publicação não pode ser vazio ou nulo")
+    @NotBlank(message = "A data da publicação não pode ser espaços em branco ou nulo")
+    @PastOrPresent(message = "A data da publicação deve ser datas passadas ou o dia de hoje")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Os detalhes do produto não podem ser nulos")
+    @NotEmpty(message = "Os detalhes do produto não podem ser vazios")
     private ProductForm detail;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "A categoria não pode ser nula")
+    @Positive(message = "A categoria deve ser maior do que 0")
     private int category;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "O preço não pode ser nula")
+    @Positive(message = "O preço deve ser maior do que 0")
     private double price;
 
     public PostForm() {
