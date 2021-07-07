@@ -24,6 +24,16 @@ public class SocialMeliExceptionHandler {
         return ResponseEntity.badRequest().body(exceptions);
     }
 
+    @ExceptionHandler(UserNotExistException.class)
+    public ResponseEntity<?> userNotExistHandler(UserNotExistException e) {
+        return ResponseEntity.badRequest().body(new ExceptioDTO(e.getMessage()));
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<?> userNotExistHandler(DatabaseException e) {
+        return ResponseEntity.badRequest().body(new ExceptioDTO(e.getMessage()));
+    }
+
     // cria um ExceptionDTO para cada atributo que viola alguma validação
     private List<ExceptionDTO> processFieldErrors(List<FieldError> fieldErrors) {
         List<ExceptionDTO> exceptions = new ArrayList<>();
