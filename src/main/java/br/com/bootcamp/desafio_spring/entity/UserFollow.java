@@ -1,5 +1,8 @@
 package br.com.bootcamp.desafio_spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserFollow implements IEntity {
     private Integer ID;
     private Integer user;

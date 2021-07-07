@@ -1,7 +1,10 @@
 package br.com.bootcamp.desafio_spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Post implements IEntity {
     private Integer ID;
     private Double price;
@@ -12,6 +15,9 @@ public class Post implements IEntity {
     private Double discount;
     private Date expireAt;
     private Date createdAt;
+
+    public Post() {
+    }
 
     public Post(Integer ID, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, Date expireAt, Date createdAt) {
         this.ID = ID;
