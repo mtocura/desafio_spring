@@ -21,6 +21,6 @@ public class UserController {
 
     @GetMapping("/users/{userId}/followed/list")
     public ResponseEntity<?> getFollowedList(@PathVariable int userId) {
-        return ResponseEntity.ok(userService.followedList(userId));
+        return ResponseEntity.ok(userService.followedList(userId, ""));
     }
 }
