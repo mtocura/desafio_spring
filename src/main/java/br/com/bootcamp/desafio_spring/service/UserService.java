@@ -9,6 +9,7 @@ import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class UserService {
     /*
     Método que retorna uma lista de vendedores que um determinado usuário, seja ele vendedor ou não, segue.
      */
-    public UserFollowingListDTO followedList(int userId) {
+    public UserFollowingListDTO followedList(int userId, String order) {
         try {
             User user = userRepository.getById(userId);
 
@@ -52,6 +53,13 @@ public class UserService {
                 followedSellers.add(seller);
             }
 
+            if(order.equals("name_asc")) {
+                SortByName.sortByNameASC(followedSellers);
+            }
+
+            if(order.equals("name_desc")) {
+                SortByName.sortByNameDESC(followedSellers);
+            }
 
             return UserHandler.convertFollowingUsers(userId, user.getName(), followedSellers);
         } catch (IOException e) {
