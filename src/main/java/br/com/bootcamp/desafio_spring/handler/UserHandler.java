@@ -4,12 +4,10 @@ import br.com.bootcamp.desafio_spring.dto.SellerFollowersListDTO;
 import br.com.bootcamp.desafio_spring.dto.UserDefaultDTO;
 import br.com.bootcamp.desafio_spring.dto.UserFollowingListDTO;
 import br.com.bootcamp.desafio_spring.entity.User;
-import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.form.UserForm;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class UserHandler {
 
@@ -19,10 +17,6 @@ public class UserHandler {
         user.setSeller(userForm.getIsSeller());
 
         return user;
-    }
-
-    public Map<String, String> validate(UserForm userForm) {
-        return null;
     }
 
     public static UserDefaultDTO convert(User user) {

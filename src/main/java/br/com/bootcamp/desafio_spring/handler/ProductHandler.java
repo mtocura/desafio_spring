@@ -4,9 +4,6 @@ import br.com.bootcamp.desafio_spring.dto.ProductDTO;
 import br.com.bootcamp.desafio_spring.entity.Product;
 import br.com.bootcamp.desafio_spring.form.ProductForm;
 
-import java.io.IOException;
-import java.util.Map;
-
 public class ProductHandler {
 
     public static Product create(ProductForm productForm) {
@@ -18,10 +15,6 @@ public class ProductHandler {
                 productForm.getColor(),
                 productForm.getNotes()
         );
-    }
-
-    public Map<String, String> validate(ProductForm productForm) {
-        return null;
     }
 
     public static ProductDTO convert(Product product) {

@@ -2,16 +2,12 @@ package br.com.bootcamp.desafio_spring.handler;
 
 import br.com.bootcamp.desafio_spring.dto.PostDTO;
 import br.com.bootcamp.desafio_spring.dto.SellerPostsDTO;
-import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsDTO;
-import br.com.bootcamp.desafio_spring.dto.UserDefaultDTO;
 import br.com.bootcamp.desafio_spring.entity.Post;
-import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.form.PostForm;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class PostHandler {
 
@@ -30,10 +26,6 @@ public class PostHandler {
                 new Date(),
                 new Date()
         );
-    }
-
-    public Map<String, String> validate(PostForm postForm) {
-        return null;
     }
 
     public static PostDTO convert(Post post) {
