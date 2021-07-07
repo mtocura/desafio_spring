@@ -2,23 +2,23 @@ package br.com.bootcamp.desafio_spring.storage;
 
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.Product;
-import br.com.bootcamp.desafio_spring.entity.Seller;
 import br.com.bootcamp.desafio_spring.entity.User;
+import br.com.bootcamp.desafio_spring.entity.UserFollow;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class State {
 
     private Map<Integer, Post> posts;
     private Map<Integer, Product> products;
-    private Map<Integer, Seller> sellers;
     private Map<Integer, User> users;
+    private List<UserFollow> userFollows;
 
     public State() {
         this.posts = new HashMap<>();
         this.products = new HashMap<>();
-        this.sellers = new HashMap<>();
         this.users = new HashMap<>();
     }
 
@@ -38,14 +38,6 @@ public class State {
         this.products = products;
     }
 
-    public Map<Integer, Seller> getSellers() {
-        return sellers;
-    }
-
-    public void setSellers(Map<Integer, Seller> sellers) {
-        this.sellers = sellers;
-    }
-
     public Map<Integer, User> getUsers() {
         return users;
     }
@@ -54,13 +46,20 @@ public class State {
         this.users = users;
     }
 
+    public List<UserFollow> getUserFollows() {
+        return userFollows;
+    }
+
+    public void setUserFollows(List<UserFollow> userFollows) {
+        this.userFollows = userFollows;
+    }
 
     @Override
     public String toString() {
         return "State{" +
                 "posts=" + posts +
                 ", products=" + products +
-                ", sellers=" + sellers +
+                ", userFollows=" + userFollows +
                 ", users=" + users +
                 '}';
     }
