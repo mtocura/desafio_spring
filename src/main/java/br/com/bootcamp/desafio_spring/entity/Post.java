@@ -6,7 +6,7 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Post implements IEntity {
-    private Integer ID;
+    private Integer id;
     private Double price;
     private Integer category;
     private Product product;
@@ -19,8 +19,8 @@ public class Post implements IEntity {
     public Post() {
     }
 
-    public Post(Integer ID, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, Date expireAt, Date createdAt) {
-        this.ID = ID;
+    public Post(Integer id, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, Date expireAt, Date createdAt) {
+        this.id = id;
         this.price = price;
         this.category = category;
         this.product = product;
@@ -32,13 +32,13 @@ public class Post implements IEntity {
     }
 
     @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getPrice() {

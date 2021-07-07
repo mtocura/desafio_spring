@@ -30,7 +30,7 @@ public class PostHandler {
 
     public static PostDTO convert(Post post) {
         return new PostDTO(
-                post.getID(),
+                post.getId(),
                 post.getCreatedAt(),
                 ProductHandler.convert(post.getProduct()),
                 post.getCategory(),

@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserFollow implements IEntity {
-    private Integer ID;
+    private Integer id;
     private Integer user;
     private Integer seller;
 
     public UserFollow() {
     }
 
-    public UserFollow(Integer ID) {
-        this.ID = ID;
+    public UserFollow(Integer id) {
+        this.id = id;
     }
 
     public UserFollow(Integer user, Integer seller) {
@@ -21,13 +21,13 @@ public class UserFollow implements IEntity {
     }
 
     @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getUser() {
@@ -52,6 +52,6 @@ public class UserFollow implements IEntity {
             return false;
         }
         UserFollow b = (UserFollow) obj;
-        return this.ID == b.ID || (this.user == b.user && this.seller == b.seller);
+        return this.id == b.id || (this.user == b.user && this.seller == b.seller);
     }
 }

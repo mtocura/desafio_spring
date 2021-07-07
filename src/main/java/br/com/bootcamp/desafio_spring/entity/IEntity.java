@@ -1,7 +1,7 @@
 package br.com.bootcamp.desafio_spring.entity;
 
 public interface IEntity {
-    Integer getID();
+    Integer getId();
     
-    void setID(Integer id);
+    void setId(Integer id);
 }
