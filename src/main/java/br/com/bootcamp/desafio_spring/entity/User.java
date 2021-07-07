@@ -1,7 +1,10 @@
 package br.com.bootcamp.desafio_spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements IEntity {
     private Integer ID;
     private String name;

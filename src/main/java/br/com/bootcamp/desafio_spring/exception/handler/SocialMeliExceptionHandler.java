@@ -1,6 +1,7 @@
 package br.com.bootcamp.desafio_spring.exception.handler;
 
 import br.com.bootcamp.desafio_spring.dto.ExceptionDTO;
+import br.com.bootcamp.desafio_spring.exception.SellerIsNotFollowedException;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.InvalidFollowException;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
@@ -45,6 +46,11 @@ public class SocialMeliExceptionHandler {
 
     @ExceptionHandler(InvalidFollowException.class)
     public ResponseEntity<?> invalidFollowHandler(InvalidFollowException e) {
+        return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
+    }
+
+    @ExceptionHandler(SellerIsNotFollowedException.class)
+    public ResponseEntity<?> sellerIsNotFollowedHandler(SellerIsNotFollowedException e) {
         return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
     }
 

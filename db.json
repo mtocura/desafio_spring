@@ -1,145 +1,140 @@
-
-      [
+{
+  "users": {
+    "1": {
+      "ID": 1,
+      "name": "Adriana Maiate",
+      "isSeller": true,
+      "posts": [
         {
-        "ID" : 1,
-        "name" : "Adriana Maiate",
-        "isSeller" : true,
-          "posts" : [
-            {
-              "ID" :  1,
-              "price" : 1500.00,
-              "category" : 1,
-              "product" : {
-                "ID": 1,
-                "name": "televisão LG 32' ",
-                "type": "Smart",
-                "brand": "",
-                "color": "silver",
-                "notes": "Televisão semi nova pouco usada, vale a pena levar!"
-              },
-              "sellerID" :  1,
-              "hasPromo" :  false,
-              "discount" :  0,
-              "expireAt" : "2021-07-21",
-              "createdAt" : "2021-07-07"
-            }
-          ]
-        },
-        {
-          "ID" : 2,
-          "name" : "Amanda",
-          "isSeller" : true,
-          "posts" : [
-            {
-              "ID" :  2,
-              "price" : 700.00,
-              "category" : 2,
-              "product" :
-                {
-                  "ID" :  2,
-                  "name" : "Cadeira Gamer",
-                  "type" :  "Gamer",
-                  "brand":  "",
-                  "color" :  "red and black",
-                  "notes" :  "Produto Novo"
-                },
-              "sellerID" :  2,
-              "hasPromo" :  false,
-              "discount" :  0,
-              "expireAt" : "2021-07-21",
-              "createdAt" : "2021-07-01"
-            }
-          ]
-        },
-        {
-          "ID" : 3,
-          "name" : "Maurício",
-          "isSeller" : false,
-          "posts" : []
-        },
-        {
-          "ID" : 4,
-          "name" : "Angelo",
-          "isSeller" : true,
-          "posts" : [
-            {
-              "ID" :  3,
-              "price" : 50.00,
-              "category" : 3,
-              "product" :
-                {
-                  "ID" :  3,
-                  "name" : "Fone de Ouvido",
-                  "type" :  "Eletrônico",
-                  "brand":  "",
-                  "color" :  "Black",
-                  "notes" :  "Produto Novo"
-                },
-              "sellerID" :  4,
-              "hasPromo" :  true,
-              "discount" :  10.00,
-              "expireAt" : "2021-07-21",
-              "createdAt" : "2021-07-02"
-            },
-            {
-              "ID" :  4,
-              "price" : 550.00,
-              "category" : 3,
-              "product" :
-                {
-                  "ID" :  4,
-                  "name" : "Teclado Gamer",
-                  "type" :  "Gamer",
-                  "brand":  "",
-                  "color" :  "Black",
-                  "notes" :  "Produto Novo"
-                },
-              "sellerID" :  3,
-              "hasPromo" :  true,
-              "discount" :  100.00,
-              "expireAt" : "2021-07-21",
-              "createdAt" : "2021-07-02"
-            }
-          ]
-        },
-        {
-          "ID" : 5,
-          "name" : "João",
-          "isSeller" : false,
-          "posts" : []
-        },
-        {
-          "ID" : 6,
-          "name" : "Pedro",
-          "isSeller" : false,
-          "posts" : []
-        },
-        {
-          "ID" : 7,
-          "name" : "Kenyo",
-          "isSeller" : true,
-          "posts" : [
-            {
-              "ID" :  5,
-              "price" : 5500.00,
-              "category" : 3,
-              "product" :
-                {
-                  "ID" :  6,
-                  "name" : "Ps5 ",
-                  "type" :  "Gamer",
-                  "brand":  "",
-                  "color" :  "black and silver",
-                  "notes" :  "Produto novo"
-                },
-              "sellerID" :  7,
-              "hasPromo" :  false,
-              "discount" :  0,
-              "expireAt" : "2021-07-21",
-              "createdAt" : "2021-07-04"
-            }
-          ]
+          "ID": 1,
+          "price": 1500.00,
+          "category": 1,
+          "product": {
+            "ID": 1,
+            "name": "televisão LG 32' ",
+            "type": "Smart",
+            "brand": "",
+            "color": "silver",
+            "notes": "Televisão semi nova pouco usada, vale a pena levar!"
+          },
+          "sellerID": 1,
+          "hasPromo": false,
+          "discount": 0,
+          "expireAt": "2021-07-21",
+          "createdAt": "2021-07-07"
         }
       ]
-
-
+    },
+    "2": {
+      "ID": 2,
+      "name": "Amanda",
+      "isSeller": true,
+      "posts": [
+        {
+          "ID": 2,
+          "price": 700.00,
+          "category": 2,
+          "product": {
+            "ID": 2,
+            "name": "Cadeira Gamer",
+            "type": "Gamer",
+            "brand": "",
+            "color": "red and black",
+            "notes": "Produto Novo"
+          },
+          "sellerID": 2,
+          "hasPromo": false,
+          "discount": 0,
+          "expireAt": "2021-07-21",
+          "createdAt": "2021-07-01"
+        }
+      ]
+    },
+    "3": {
+      "ID": 3,
+      "name": "Maurício",
+      "isSeller": false,
+      "posts": []
+    },
+    "4": {
+      "ID": 4,
+      "name": "Angelo",
+      "isSeller": true,
+      "posts": [
+        {
+          "ID": 3,
+          "price": 50.00,
+          "category": 3,
+          "product": {
+            "ID": 3,
+            "name": "Fone de Ouvido",
+            "type": "Eletrônico",
+            "brand": "",
+            "color": "Black",
+            "notes": "Produto Novo"
+          },
+          "sellerID": 4,
+          "hasPromo": true,
+          "discount": 10.00,
+          "expireAt": "2021-07-21",
+          "createdAt": "2021-07-02"
+        },
+        {
+          "ID": 4,
+          "price": 550.00,
+          "category": 3,
+          "product": {
+            "ID": 4,
+            "name": "Teclado Gamer",
+            "type": "Gamer",
+            "brand": "",
+            "color": "Black",
+            "notes": "Produto Novo"
+          },
+          "sellerID": 3,
+          "hasPromo": true,
+          "discount": 100.00,
+          "expireAt": "2021-07-21",
+          "createdAt": "2021-07-02"
+        }
+      ]
+    },
+    "5": {
+      "ID": 5,
+      "name": "João",
+      "isSeller": false,
+      "posts": []
+    },
+    "6": {
+      "ID": 6,
+      "name": "Pedro",
+      "isSeller": false,
+      "posts": []
+    },
+    "7": {
+      "ID": 7,
+      "name": "Kenyo",
+      "isSeller": true,
+      "posts": [
+        {
+          "ID": 5,
+          "price": 5500.00,
+          "category": 3,
+          "product": {
+            "ID": 6,
+            "name": "Ps5 ",
+            "type": "Gamer",
+            "brand": "",
+            "color": "black and silver",
+            "notes": "Produto novo"
+          },
+          "sellerID": 7,
+          "hasPromo": false,
+          "discount": 0,
+          "expireAt": "2021-07-21",
+          "createdAt": "2021-07-04"
+        }
+      ]
+    }
+  }
+}
