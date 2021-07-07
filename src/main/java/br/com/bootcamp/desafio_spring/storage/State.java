@@ -5,6 +5,7 @@ import br.com.bootcamp.desafio_spring.entity.Product;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +18,12 @@ public class State {
     private List<UserFollow> userFollows;
 
     public State() {
-        this.posts = new HashMap<>();
-        this.products = new HashMap<>();
-        this.users = new HashMap<>();
     }
 
     public Map<Integer, Post> getPosts() {
+        if (posts == null) {
+            posts = new HashMap<>();
+        }
         return posts;
     }
 
@@ -31,6 +32,9 @@ public class State {
     }
 
     public Map<Integer, Product> getProducts() {
+        if (products == null) {
+            products = new HashMap<>();
+        }
         return products;
     }
 
@@ -39,6 +43,9 @@ public class State {
     }
 
     public Map<Integer, User> getUsers() {
+        if (users == null) {
+            users = new HashMap<>();
+        }
         return users;
     }
 
@@ -47,6 +54,9 @@ public class State {
     }
 
     public List<UserFollow> getUserFollows() {
+        if (userFollows == null) {
+            userFollows = new ArrayList<>();
+        }
         return userFollows;
     }
 
