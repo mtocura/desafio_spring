@@ -37,10 +37,11 @@ public class UserFollowService {
             }
 
             User seller = this.userRepository.getById(sellerID);
+
             if (seller == null) {
                 throw new UserNotExistException("Vendedor " + userID + " não encontrado");
             }
-            if (!seller.isSeller()) {
+            if (!seller.getIsSeller()) {
                 throw new UserIsNotSellerException("Usuario " + sellerID + " não é um vendedor e não pode ser seguido");
             }
 
@@ -67,7 +68,7 @@ public class UserFollowService {
                 throw new UserNotExistException("Vendedor " + userID + " não encontrado");
             }
 
-            if (!seller.isSeller()) {
+            if (!seller.getIsSeller()) {
                 throw new UserIsNotSellerException("Usuário " + sellerID + " não é um vendedor e não pode deixar de ser seguido");
             }
 

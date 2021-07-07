@@ -14,7 +14,7 @@ public class UserHandler {
     public static User create(UserForm userForm) {
         User user = new User();
         user.setName(userForm.getName());
-        user.setSeller(userForm.getIsSeller());
+        user.setIsSeller(userForm.getIsSeller());
 
         return user;
     }
