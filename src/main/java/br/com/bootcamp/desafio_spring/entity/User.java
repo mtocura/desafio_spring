@@ -5,15 +5,21 @@ import java.util.List;
 public class User implements IEntity {
     private Integer ID;
     private String name;
-    private List<Seller> following;
+    private boolean isSeller;
+    private List<Post> posts;
 
     public User() {
     }
 
-    public User(Integer ID, String name, List<Seller> following) {
+    public User(Integer ID, String name) {
         this.ID = ID;
         this.name = name;
-        this.following = following;
+    }
+
+    public User(Integer ID, String name, boolean isSeller) {
+        this.ID = ID;
+        this.name = name;
+        this.isSeller = isSeller;
     }
 
     @Override
@@ -34,12 +40,20 @@ public class User implements IEntity {
         this.name = name;
     }
 
-    public List<Seller> getFollowing() {
-        return following;
+    public boolean isSeller() {
+        return isSeller;
     }
 
-    public void setFollowing(List<Seller> following) {
-        this.following = following;
+    public void setSeller(boolean seller) {
+        isSeller = seller;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
@@ -47,7 +61,6 @@ public class User implements IEntity {
         return "User{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
-                ", following=" + following +
                 '}';
     }
 
