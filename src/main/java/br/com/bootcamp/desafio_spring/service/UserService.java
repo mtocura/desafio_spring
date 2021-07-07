@@ -1,11 +1,13 @@
 package br.com.bootcamp.desafio_spring.service;
 
 import br.com.bootcamp.desafio_spring.dto.SellerPostsDTO;
+import br.com.bootcamp.desafio_spring.dto.UserDefaultDTO;
 import br.com.bootcamp.desafio_spring.dto.UserFollowingListDTO;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
+import br.com.bootcamp.desafio_spring.form.UserForm;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
@@ -30,6 +32,19 @@ public class UserService {
     public UserService(UserRepository userRepository, UserFollowRepository userFollowRepository) {
         this.userRepository = userRepository;
         this.userFollowRepository = userFollowRepository;
+    }
+
+    public UserDefaultDTO createUser(UserForm userForm) {
+        try {
+            User user = UserHandler.create(userForm);
+            int userId = userRepository.save(user);
+
+            User savedUser = userRepository.getById(userId);
+
+            return UserHandler.convert(savedUser);
+        } catch (IOException e) {
+            throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
+        }
     }
 
     /*
