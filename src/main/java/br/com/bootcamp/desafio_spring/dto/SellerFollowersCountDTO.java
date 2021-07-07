@@ -1,15 +1,18 @@
 package br.com.bootcamp.desafio_spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SellerFollowersCountDTO {
 
     private Integer userId;
     private String userName;
-    private Integer followers_count;
+    @JsonProperty("followers_count")
+    private Integer followersCount;
 
-    public SellerFollowersCountDTO(Integer userId, String userName, Integer followers_count) {
+    public SellerFollowersCountDTO(Integer userId, String userName, Integer followersCount) {
         this.userId = userId;
         this.userName = userName;
-        this.followers_count = followers_count;
+        this.followersCount = followersCount;
     }
 
     public Integer getUserId() {
@@ -28,11 +31,11 @@ public class SellerFollowersCountDTO {
         this.userName = userName;
     }
 
-    public Integer getFollowers_count() {
-        return followers_count;
+    public Integer getFollowersCount() {
+        return followersCount;
     }
 
-    public void setFollowers_count(Integer followers_count) {
-        this.followers_count = followers_count;
+    public void setFollowersCount(Integer followersCount) {
+        this.followersCount = followersCount;
     }
 }
