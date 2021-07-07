@@ -3,52 +3,42 @@ package br.com.bootcamp.desafio_spring.dto;
 import java.util.Date;
 
 public class PostDTO {
-    private Integer userId;
-    private Integer id;
-    private Double price;
+    private Integer id_post;
+    private Date date;
+    private ProductDTO detail;
     private Integer category;
-    private ProductDTO productDTO;
-    private Integer sellerID;
-    private Boolean hasPromo;
-    private Double discount;
-    private Date expiredAt;
-    private Date createdAt;
+    private Double price;
 
-    public PostDTO(Integer userId, Integer id, Double price, Integer category, ProductDTO productDTO, Integer sellerID, Boolean hasPromo, Double discount, Date expiredAt, Date createdAt) {
-        this.userId = userId;
-        this.id = id;
-        this.price = price;
+    public PostDTO(Integer id_post, Date date, ProductDTO detail, Integer category, Double price) {
+        this.id_post = id_post;
+        this.date = date;
+        this.detail = detail;
         this.category = category;
-        this.productDTO = productDTO;
-        this.sellerID = sellerID;
-        this.hasPromo = hasPromo;
-        this.discount = discount;
-        this.expiredAt = expiredAt;
-        this.createdAt = createdAt;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getId_post() {
+        return id_post;
+    }
+
+    public void setId_post(Integer id_post) {
+        this.id_post = id_post;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public ProductDTO getDetail() {
+        return detail;
+    }
+
+    public void setDetail(ProductDTO detail) {
+        this.detail = detail;
     }
 
     public Integer getCategory() {
@@ -59,51 +49,11 @@ public class PostDTO {
         this.category = category;
     }
 
-    public ProductDTO getProductDTO() {
-        return productDTO;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setProductDTO(ProductDTO productDTO) {
-        this.productDTO = productDTO;
-    }
-
-    public Integer getSellerID() {
-        return sellerID;
-    }
-
-    public void setSellerID(Integer sellerID) {
-        this.sellerID = sellerID;
-    }
-
-    public Boolean getHasPromo() {
-        return hasPromo;
-    }
-
-    public void setHasPromo(Boolean hasPromo) {
-        this.hasPromo = hasPromo;
-    }
-
-    public Double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
-
-    public Date getExpiredAt() {
-        return expiredAt;
-    }
-
-    public void setExpiredAt(Date expiredAt) {
-        this.expiredAt = expiredAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
