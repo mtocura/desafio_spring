@@ -91,6 +91,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
 
         p.setId(id);
         state.add(p);
+        Storage.getInstance().flush();
         return id;
     }
 
@@ -103,6 +104,7 @@ public class UserFollowRepository extends Repository<UserFollow> {
             if (uf.equals(p)) {
                 uf.setUser(p.getUser());
                 uf.setSeller(p.getSeller());
+                Storage.getInstance().flush();
             }
         }
 

@@ -1,6 +1,7 @@
 package br.com.bootcamp.desafio_spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
