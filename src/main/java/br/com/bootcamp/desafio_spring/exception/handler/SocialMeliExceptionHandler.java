@@ -1,5 +1,6 @@
-package br.com.bootcamp.desafio_spring.exception;
+package br.com.bootcamp.desafio_spring.exception.handler;
 
+import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
