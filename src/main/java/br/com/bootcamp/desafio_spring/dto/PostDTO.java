@@ -1,28 +1,31 @@
 package br.com.bootcamp.desafio_spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class PostDTO {
-    private Integer id_post;
+    @JsonProperty("id_post")
+    private Integer postID;
     private Date date;
     private ProductDTO detail;
     private Integer category;
     private Double price;
 
-    public PostDTO(Integer id_post, Date date, ProductDTO detail, Integer category, Double price) {
-        this.id_post = id_post;
+    public PostDTO(Integer postID, Date date, ProductDTO detail, Integer category, Double price) {
+        this.postID = postID;
         this.date = date;
         this.detail = detail;
         this.category = category;
         this.price = price;
     }
 
-    public Integer getId_post() {
-        return id_post;
+    public Integer getPostID() {
+        return postID;
     }
 
-    public void setId_post(Integer id_post) {
-        this.id_post = id_post;
+    public void setPostID(Integer postID) {
+        this.postID = postID;
     }
 
     public Date getDate() {

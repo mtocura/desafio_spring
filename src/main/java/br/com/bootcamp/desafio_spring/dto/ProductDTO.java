@@ -1,15 +1,18 @@
 package br.com.bootcamp.desafio_spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ProductDTO {
-    private Integer product_id;
+    @JsonProperty("product_id")
+    private Integer productID;
     private String productName;
     private String type;
     private String brand;
     private String color;
     private String notes;
 
-    public ProductDTO(Integer product_id, String productName, String type, String brand, String color, String notes) {
-        this.product_id = product_id;
+    public ProductDTO(Integer productID, String productName, String type, String brand, String color, String notes) {
+        this.productID = productID;
         this.productName = productName;
         this.type = type;
         this.brand = brand;
@@ -17,12 +20,12 @@ public class ProductDTO {
         this.notes = notes;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public Integer getProductID() {
+        return productID;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setProductID(Integer productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {

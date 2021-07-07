@@ -23,7 +23,7 @@ public class PostPromoForm extends PostForm{
         this.discount = discount;
     }
 
-    public boolean isHasPromo() {
+    public boolean getHasPromo() {
         return hasPromo;
     }
 
