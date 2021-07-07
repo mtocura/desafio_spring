@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Repository<T extends IEntity> {
-    private int nextID;
 
     public T getById(int id) throws IOException {
         State s = Storage.getInstance().load();
@@ -38,7 +37,7 @@ public abstract class Repository<T extends IEntity> {
         State s = Storage.getInstance().load();
         Map<Integer, T> entities = this.getState(s);
 
-        int id = nextID++;
+        int id = this.generatesNextId(s);
         p.setId(id);
 
         entities.put(id, p);
@@ -63,4 +62,6 @@ public abstract class Repository<T extends IEntity> {
     }
 
     protected abstract Map<Integer, T> getState(State s);
+
+    protected abstract int generatesNextId(State s);
 }
