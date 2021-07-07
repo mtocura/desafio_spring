@@ -24,7 +24,7 @@ public class UserForm {
         return name;
     }
 
-    public boolean isSeller() {
+    public boolean getIsSeller() {
         return isSeller;
     }
 }
