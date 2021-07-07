@@ -49,7 +49,7 @@ public class SellerService {
                 throw new UserNotExistException("Usuário " + userId + " não é vendedor.");
             }
         } catch (IOException e) {
-            throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
+            throw new DatabaseException(e.getMessage());
         }
     }
 
