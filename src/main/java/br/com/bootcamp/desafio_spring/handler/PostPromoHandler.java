@@ -27,7 +27,7 @@ public class PostPromoHandler {
 
     public static PostPromoDTO convert(Post post) {
         return new PostPromoDTO(
-                post.getID(),
+                post.getId(),
                 post.getCreatedAt(),
                 ProductHandler.convert(post.getProduct()),
                 post.getCategory(),

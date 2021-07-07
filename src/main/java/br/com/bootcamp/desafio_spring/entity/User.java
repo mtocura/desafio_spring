@@ -7,8 +7,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements IEntity {
-    @JsonProperty("ID")
-    private Integer ID;
+    private Integer id;
     private String name;
     private boolean isSeller;
     private List<Post> posts;
@@ -16,25 +15,25 @@ public class User implements IEntity {
     public User() {
     }
 
-    public User(Integer ID, String name) {
-        this.ID = ID;
+    public User(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public User(Integer ID, String name, boolean isSeller) {
-        this.ID = ID;
+    public User(Integer id, String name, boolean isSeller) {
+        this.id = id;
         this.name = name;
         this.isSeller = isSeller;
     }
 
     @Override
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     @Override
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -64,7 +63,7 @@ public class User implements IEntity {
     @Override
     public String toString() {
         return "User{" +
-                "ID=" + ID +
+                "ID=" + id +
                 ", name='" + name + '\'' +
                 ", isSeller=" + isSeller +
                 ", posts=" + posts +
