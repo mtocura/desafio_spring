@@ -7,7 +7,7 @@ public class ExceptionDTO {
         this.message = message;
     }
 
-    public String getMenssage() {
+    public String getMessage() {
         return message;
     }
 }
