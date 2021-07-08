@@ -1,23 +1,16 @@
 package br.com.bootcamp.desafio_spring.dto;
 
+import java.util.Map;
+
 public class ExceptionFieldDTO {
 
-    private String field;
-    private String message;
+    private Map<String, String> errors;
 
-    public ExceptionFieldDTO(String message) {
-        this.message = message;
+    public ExceptionFieldDTO(Map<String, String> errors) {
+        this.errors = errors;
     }
-
-    public ExceptionFieldDTO(String field, String message) {
-        this.field = field;
-        this.message = message;
-    }
-
-    public String getMensagem() {
-        return message;
-    }
-    public String getCampo() {
-        return field;
+    
+    public Map<String, String> getErrors() {
+        return errors;
     }
 }
