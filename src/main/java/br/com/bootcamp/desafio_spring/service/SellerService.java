@@ -15,6 +15,7 @@ import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.RepositoryUtil;
 import br.com.bootcamp.desafio_spring.utils.UserUtil;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByPostDate;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -46,13 +46,7 @@ public class SellerService {
 
             UserUtil.userIsSeller(user, userId);
 
-            List<UserFollow> followerUserRelationship = userFollowRepository.getSellerFollowers(userId);
-            List<User> followerUsers = new ArrayList<>();
-
-            for (UserFollow userFollow : followerUserRelationship) {
-                User userFollower = userRepository.getById(userFollow.getUser());
-                followerUsers.add(userFollower);
-            }
+            List<User> followerUsers = RepositoryUtil.getSellerFollowers(userId, userRepository, userFollowRepository);
 
             SortByName.sortByName(followerUsers, order);
 
@@ -125,7 +119,7 @@ public class SellerService {
 
             Post newPost = PostHandler.create(postForm);
             seller.getPosts().add(newPost);
-            int userId = userRepository.update(seller);
+            userRepository.update(seller);
         } catch (IOException e) {
             throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
         }
@@ -140,11 +134,10 @@ public class SellerService {
             Post newPromoPost = PostPromoHandler.create(postPromoForm);
 
             seller.getPosts().add(newPromoPost);
-            int userId = userRepository.update(seller);
+            userRepository.update(seller);
         } catch (IOException e) {
             throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
         }
     }
-
 
 }

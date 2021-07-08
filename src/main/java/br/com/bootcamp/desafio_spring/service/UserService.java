@@ -6,13 +6,13 @@ import br.com.bootcamp.desafio_spring.dto.UserDefaultDTO;
 import br.com.bootcamp.desafio_spring.dto.UserFollowingListDTO;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.User;
-import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.form.UserForm;
 import br.com.bootcamp.desafio_spring.handler.PostHandler;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.RepositoryUtil;
 import br.com.bootcamp.desafio_spring.utils.UserUtil;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByPostDate;
@@ -62,15 +62,7 @@ public class UserService {
 
             UserUtil.userExists(user, userId);
 
-            List<UserFollow> followedSellersRelationship = userFollowRepository.getUserFollowed(userId);
-
-            List<User> followedSellers = new ArrayList<>();
-
-            for (UserFollow userFollow : followedSellersRelationship) {
-                User seller = userRepository.getById(userFollow.getSeller());
-
-                followedSellers.add(seller);
-            }
+            List<User> followedSellers = RepositoryUtil.getFollowedSellers(userId, userRepository, userFollowRepository);
 
             SortByName.sortByName(followedSellers, order);
 
@@ -85,11 +77,7 @@ public class UserService {
             User user = this.userRepository.getById(userId);
             UserUtil.userExists(user, userId);
 
-            List<UserFollow> follows = this.userFollowRepository.getUserFollowed(userId);
-            List<User> sellers = new ArrayList<>();
-            for (UserFollow f : follows) {
-                sellers.add(this.userRepository.getById(f.getSeller()));
-            }
+            List<User> sellers = RepositoryUtil.getFollowedSellers(userId, userRepository, userFollowRepository);
 
             final long DAY_LIMIT = 15;
             List<Post> postsEntities = new ArrayList<>();

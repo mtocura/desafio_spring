@@ -12,7 +12,7 @@ import java.util.List;
 public final class RepositoryUtil {
     private RepositoryUtil() {}
 
-    public List<User> getFollowedSellers(int userId, UserRepository userRep, UserFollowRepository followRepo) throws IOException {
+    public static List<User> getFollowedSellers(int userId, UserRepository userRep, UserFollowRepository followRepo) throws IOException {
         List<UserFollow> follows = followRepo.getUserFollowed(userId);
         List<User> sellers = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public final class RepositoryUtil {
         return sellers;
     }
 
-    public List<User> getSellerFollowers(int sellerId, UserRepository userRep, UserFollowRepository followRepo) throws IOException {
+    public static List<User> getSellerFollowers(int sellerId, UserRepository userRep, UserFollowRepository followRepo) throws IOException {
         List<UserFollow> follows = followRepo.getSellerFollowers(sellerId);
         List<User> followers = new ArrayList<>();
 
