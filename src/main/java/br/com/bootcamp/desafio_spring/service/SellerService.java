@@ -10,6 +10,7 @@ import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class SellerService {
         this.userFollowRepository = userFollowRepository;
     }
 
-    public SellerFollowersListDTO followerList (int userId) {
+    public SellerFollowersListDTO followerList (int userId, String order) {
         try {
             User user = userRepository.getById(userId);
 
@@ -47,6 +48,15 @@ public class SellerService {
                 User userFollower = userRepository.getById(userFollow.getUser());
                 followerUsers.add(userFollower);
             }
+
+            if(order.equals("name_asc")) {
+                SortByName.sortByNameASC(followerUsers);
+            }
+
+            if(order.equals("name_desc")) {
+                SortByName.sortByNameDESC(followerUsers);
+            }
+
             return UserHandler.convertSellerFollowers(userId, user.getName(), followerUsers);
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
