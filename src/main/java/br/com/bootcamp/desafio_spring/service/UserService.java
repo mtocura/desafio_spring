@@ -8,12 +8,12 @@ import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
-import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.form.UserForm;
 import br.com.bootcamp.desafio_spring.handler.PostHandler;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.UserUtil;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByPostDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,9 +60,7 @@ public class UserService {
         try {
             User user = userRepository.getById(userId);
 
-            if(user == null) {
-                throw new UserNotExistException("Usuário " + userId + " não encontrado");
-            }
+            UserUtil.userExists(user, userId);
 
             List<UserFollow> followedSellersRelationship = userFollowRepository.getUserFollowed(userId);
 
@@ -85,9 +83,7 @@ public class UserService {
     public SellerPostsDTO followedPosts(int userId, String order) {
         try {
             User user = this.userRepository.getById(userId);
-            if (user == null) {
-                throw new UserNotExistException("Usuário " + userId + " não encontrado");
-            }
+            UserUtil.userExists(user, userId);
 
             List<UserFollow> follows = this.userFollowRepository.getUserFollowed(userId);
             List<User> sellers = new ArrayList<>();
