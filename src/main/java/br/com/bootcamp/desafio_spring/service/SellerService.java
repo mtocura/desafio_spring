@@ -1,22 +1,25 @@
 package br.com.bootcamp.desafio_spring.service;
 
-import br.com.bootcamp.desafio_spring.dto.SellerFollowersListDTO;
+import br.com.bootcamp.desafio_spring.dto.*;
+import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
+import br.com.bootcamp.desafio_spring.handler.PostPromoHandler;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
-import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
+import br.com.bootcamp.desafio_spring.utils.sorters.SortByPostDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SellerService {
@@ -80,5 +83,38 @@ public class SellerService {
             throw new DatabaseException(e.getMessage());
 
         }
+    }
+
+    public SellerPromoPostsDTO productList (int userId, String order){
+        try {
+            User user = userRepository.getById(userId);
+
+            if (user == null) {
+                throw new UserNotExistException("Vendedor " + userId + " não encontrado.");
+            }
+            if (!user.getIsSeller()) {
+                throw new UserNotExistException("Usuário " + userId + " não é vendedor.");
+            }
+
+            List<Post> postsUser =
+                    user.getPosts()
+                            .stream()
+                            .filter(Post::getHasPromo)
+                            .collect(Collectors.toList());
+
+            if(order.equals("date_asc")) {
+                SortByPostDate.sortByDatePostASC(postsUser);
+            }
+
+            if(order.equals("date_desc")) {
+                SortByPostDate.sortByDatePostDESC(postsUser);
+            }
+
+            return PostPromoHandler.convertSellerPromoPostsDTO(userId, user.getName(), postsUser);
+
+        } catch (IOException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 }
