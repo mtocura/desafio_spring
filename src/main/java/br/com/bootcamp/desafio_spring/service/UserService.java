@@ -1,12 +1,16 @@
 package br.com.bootcamp.desafio_spring.service;
 
+import br.com.bootcamp.desafio_spring.dto.PostDTO;
+import br.com.bootcamp.desafio_spring.dto.SellerPostsDTO;
 import br.com.bootcamp.desafio_spring.dto.UserDefaultDTO;
 import br.com.bootcamp.desafio_spring.dto.UserFollowingListDTO;
+import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.form.UserForm;
+import br.com.bootcamp.desafio_spring.handler.PostHandler;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
@@ -15,8 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -79,5 +85,63 @@ public class UserService {
         } catch (IOException e) {
             throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
         }
+    }
+
+    public SellerPostsDTO followedPosts(int userId) {
+        try {
+            User user = this.userRepository.getById(userId);
+            if (user == null) {
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
+            }
+
+            List<UserFollow> follows = this.userFollowRepository.getUserFollowed(userId);
+            List<User> sellers = new ArrayList<>();
+            for (UserFollow f : follows) {
+                sellers.add(this.userRepository.getById(f.getSeller()));
+            }
+
+            final long DAY_LIMIT = 15;
+            List<Post> postsEntities = new ArrayList<>();
+            ZonedDateTime now = ZonedDateTime.now();
+            ZonedDateTime limit = ZonedDateTime.now().minusDays(DAY_LIMIT);
+
+            for (User seller : sellers) {
+                for (Post p : seller.getPosts()) {
+                    ZonedDateTime date = p.getCreatedAt().toInstant().atZone(ZoneId.systemDefault());
+                    ZonedDateTime expire = p.getExpireAt().toInstant().atZone(ZoneId.systemDefault());
+                    if (isFollowedPostsValidDate(now, limit, date, expire)) {
+                        postsEntities.add(p);
+                    }
+                }
+            }
+            postsEntities.sort((p, q) -> {
+                Date pDate = p.getCreatedAt();
+                Date qDate = q.getCreatedAt();
+                if (pDate.before(qDate)) {
+                    return -1;
+                }
+                if (qDate.before(pDate)) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            List<PostDTO> posts =
+                    postsEntities
+                    .stream()
+                    .map(PostHandler::convert)
+                    .collect(Collectors.toList());
+            return new SellerPostsDTO(userId, posts);
+        } catch (IOException e) {
+            throw new DatabaseException("Falha ao tentar acessar o banco de dados.");
+        }
+    }
+
+    private boolean isFollowedPostsValidDate(ZonedDateTime now, ZonedDateTime limit, ZonedDateTime date, ZonedDateTime expire) {
+        boolean isWithinLimit = limit.isBefore(date);
+        if (expire == null) {
+            return isWithinLimit;
+        }
+        return now.isBefore(expire) || now.isEqual(expire);
     }
 }
