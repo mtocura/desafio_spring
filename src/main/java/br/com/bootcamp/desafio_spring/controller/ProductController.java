@@ -3,10 +3,9 @@ package br.com.bootcamp.desafio_spring.controller;
 import br.com.bootcamp.desafio_spring.dto.SellerPostsDTO;
 import br.com.bootcamp.desafio_spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -18,7 +17,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/followed/{userId}/list")
-    public SellerPostsDTO followedPosts(@PathVariable int userId) {
-         return this.userService.followedPosts(userId);
+    public SellerPostsDTO followedPosts(@PathVariable int userId, @RequestParam(required = false) String order) {
+         return this.userService.followedPosts(userId, order == null ? "" : order);
     }
 }
