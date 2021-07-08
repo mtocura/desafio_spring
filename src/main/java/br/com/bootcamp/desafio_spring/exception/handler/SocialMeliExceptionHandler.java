@@ -1,6 +1,7 @@
 package br.com.bootcamp.desafio_spring.exception.handler;
 
 import br.com.bootcamp.desafio_spring.dto.ExceptionDTO;
+import br.com.bootcamp.desafio_spring.dto.ExceptionFieldDTO;
 import br.com.bootcamp.desafio_spring.exception.SellerIsNotFollowedException;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.InvalidFollowException;
@@ -24,7 +25,7 @@ public class SocialMeliExceptionHandler {
         BindingResult result = e.getBindingResult();
 
         List<FieldError> fieldErrors = e.getFieldErrors();
-        List<ExceptionDTO> exceptions = processFieldErrors(fieldErrors);
+        List<ExceptionFieldDTO> exceptions = processFieldErrors(fieldErrors);
 
         return ResponseEntity.badRequest().body(exceptions);
     }
@@ -55,10 +56,10 @@ public class SocialMeliExceptionHandler {
     }
 
     // cria um ExceptionDTO para cada atributo que viola alguma validação
-    private List<ExceptionDTO> processFieldErrors(List<FieldError> fieldErrors) {
-        List<ExceptionDTO> exceptions = new ArrayList<>();
+    private List<ExceptionFieldDTO> processFieldErrors(List<FieldError> fieldErrors) {
+        List<ExceptionFieldDTO> exceptions = new ArrayList<>();
         for (FieldError fieldError: fieldErrors) {
-            exceptions.add(new ExceptionDTO(fieldError.getField(), fieldError.getDefaultMessage()));
+            exceptions.add(new ExceptionFieldDTO(fieldError.getField(), fieldError.getDefaultMessage()));
         }
         return exceptions;
     }
