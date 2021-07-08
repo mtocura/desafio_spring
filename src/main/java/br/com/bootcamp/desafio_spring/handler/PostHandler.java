@@ -24,8 +24,8 @@ public class PostHandler {
                 postForm.getUserId(),
                 hasPromo,
                 discount,
-                new Date(),
-                ZonedDateTime.now()
+                null,
+                postForm.getDate()
         );
     }
 

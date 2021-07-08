@@ -21,7 +21,7 @@ public class PostPromoHandler {
                 postPromoForm.getUserId(),
                 postPromoForm.getHasPromo(),
                 postPromoForm.getDiscount(),
-                new Date(),
+                postPromoForm.getExpireDate(),
                 ZonedDateTime.now()
         );
     }
