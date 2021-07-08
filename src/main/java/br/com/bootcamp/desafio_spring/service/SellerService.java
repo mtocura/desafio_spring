@@ -1,5 +1,8 @@
 package br.com.bootcamp.desafio_spring.service;
 
+import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
+import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsCountDTO;
+import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.dto.SellerFollowersListDTO;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
@@ -16,7 +19,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class SellerService {
@@ -79,6 +86,29 @@ public class SellerService {
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
 
+        }
+    }
+
+    public SellerPromoPostsCountDTO sellerPromoPostsCount(int userId) {
+        try {
+            User seller = userRepository.getById(userId);
+
+            if(seller == null) {
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
+            }
+
+            if(!seller.getIsSeller()) {
+                throw new UserIsNotSellerException("Usuário " + seller.getId() + " não é um vendedor");
+            }
+
+            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().after(new Date());
+
+            // somente os posts que são promocionais e que não estão expirados
+            List<Post> promoPosts = seller.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
+
+            return new SellerPromoPostsCountDTO(seller.getId(), seller.getName(), promoPosts.size());
+        } catch(IOException e) {
+            throw new DatabaseException(e.getMessage());
         }
     }
 }
