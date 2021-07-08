@@ -25,7 +25,7 @@ public class SocialMeliExceptionHandler {
         BindingResult result = e.getBindingResult();
 
         List<FieldError> fieldErrors = result.getFieldErrors();
-        List<ExceptionFieldDTO> exceptions = FieldErrors.processFieldErrors(fieldErrors);
+        ExceptionFieldDTO exceptions = FieldErrors.processFieldErrors(fieldErrors);
 
         return ResponseEntity.badRequest().body(exceptions);
     }
