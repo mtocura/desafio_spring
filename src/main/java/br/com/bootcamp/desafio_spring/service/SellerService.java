@@ -1,5 +1,7 @@
 package br.com.bootcamp.desafio_spring.service;
 
+import br.com.bootcamp.desafio_spring.dto.*;
+import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
 import br.com.bootcamp.desafio_spring.exception.*;
 import br.com.bootcamp.desafio_spring.form.PostForm;
@@ -7,17 +9,18 @@ import br.com.bootcamp.desafio_spring.form.PostPromoForm;
 import br.com.bootcamp.desafio_spring.handler.PostHandler;
 import br.com.bootcamp.desafio_spring.handler.PostPromoHandler;
 import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsCountDTO;
-import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.dto.SellerFollowersListDTO;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
+import br.com.bootcamp.desafio_spring.handler.PostPromoHandler;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
+import br.com.bootcamp.desafio_spring.utils.sorters.SortByPostDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,6 +92,38 @@ public class SellerService {
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
 
+        }
+    }
+
+    public SellerPromoPostsDTO productList (int userId, String order) {
+        try {
+            User user = userRepository.getById(userId);
+
+            if (user == null) {
+                throw new UserNotExistException("Vendedor " + userId + " não encontrado.");
+            }
+            if (!user.getIsSeller()) {
+                throw new UserNotExistException("Usuário " + userId + " não é vendedor.");
+            }
+
+            ZonedDateTime now = ZonedDateTime.now();
+
+            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().toInstant().isAfter(now.toInstant());
+
+            List<Post> postsPromoUser = user.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
+
+            if (order.equals("date_asc")) {
+                SortByPostDate.sortByDatePostASC(postsPromoUser);
+            }
+
+            if (order.equals("date_desc")) {
+                SortByPostDate.sortByDatePostDESC(postsPromoUser);
+            }
+
+            return PostPromoHandler.convertSellerPromoPostsDTO(userId, user.getName(), postsPromoUser);
+
+        } catch (IOException e) {
+            throw new DatabaseException(e.getMessage());
         }
     }
 
