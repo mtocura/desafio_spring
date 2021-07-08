@@ -46,10 +46,6 @@ public class UserFollowRepository extends Repository<UserFollow> {
         return res;
     }
 
-    public void remove(int userId, int sellerId) throws IOException {
-        this.remove(new UserFollow(userId, sellerId));
-    }
-
     public void remove(UserFollow r) throws IOException {
         List<UserFollow> state = Storage.getInstance().load().getUserFollows();
         state.remove(r);
@@ -115,8 +111,10 @@ public class UserFollowRepository extends Repository<UserFollow> {
 
     @Override
     public void remove(int id) throws IOException {
-        List<UserFollow> state = Storage.getInstance().load().getUserFollows();
+        Storage storage = Storage.getInstance();
+        List<UserFollow> state = storage.load().getUserFollows();
         state.remove(new UserFollow(id));
+        storage.flush();
     }
 
     @Override

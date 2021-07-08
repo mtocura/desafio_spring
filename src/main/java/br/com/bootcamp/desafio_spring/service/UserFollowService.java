@@ -63,7 +63,7 @@ public class UserFollowService {
 
             UserFollow uf = this.userFollowRepository.get(userId, sellerId);
             if (uf != null) {
-                this.userFollowRepository.remove(uf);
+                this.userFollowRepository.remove(uf.getId());
             } else {
                 throw new SellerIsNotFollowedException("Usuário" + userId + " não segue vendedor " + sellerId);
             }
