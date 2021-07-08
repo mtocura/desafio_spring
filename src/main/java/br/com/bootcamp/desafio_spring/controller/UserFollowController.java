@@ -26,4 +26,9 @@ public class UserFollowController {
     public void follow(@PathVariable int userId, @PathVariable int userIdToFollow) {
         this.userFollowService.follow(userId, userIdToFollow);
     }
+
+    @PostMapping("/users/{userId}/unfollow/{userIdToUnfollow}")
+    public void unfollow(@PathVariable int userId, @PathVariable int userIdToUnfollow) {
+        this.userFollowService.unfollow(userId, userIdToUnfollow);
+    }
 }
