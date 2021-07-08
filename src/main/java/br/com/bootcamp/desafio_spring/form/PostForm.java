@@ -16,14 +16,12 @@ public class PostForm {
     @JsonProperty("id_post")
     private int postId;
 
-    @NotEmpty(message = "A data da publicação não pode ser vazio ou nulo")
-    @NotBlank(message = "A data da publicação não pode ser espaços em branco ou nulo")
+    @NotNull(message = "A data da publicação não pode ser vazio ou nulo")
     @PastOrPresent(message = "A data da publicação deve ser datas passadas ou o dia de hoje")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
     @NotNull(message = "Os detalhes do produto não podem ser nulos")
-    @NotEmpty(message = "Os detalhes do produto não podem ser vazios")
     private ProductForm detail;
 
     @NotNull(message = "A categoria não pode ser nula")
