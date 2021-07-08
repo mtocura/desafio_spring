@@ -3,7 +3,6 @@ package br.com.bootcamp.desafio_spring.controller;
 import br.com.bootcamp.desafio_spring.form.UserForm;
 import br.com.bootcamp.desafio_spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
