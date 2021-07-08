@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.ZonedDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Post implements IEntity {
+public class Post implements IEntity, Comparable<Post> {
     private Integer id;
     private Double price;
     private Integer category;
@@ -103,5 +103,18 @@ public class Post implements IEntity {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+
+    @Override
+    public int compareTo(Post post) {
+        ZonedDateTime postDate = post.getCreatedAt();
+        if (postDate.isBefore(this.getCreatedAt())) {
+            return -1;
+        }
+        if (postDate.isAfter(this.getCreatedAt())) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -9,7 +9,6 @@ import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
-import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
@@ -18,10 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -101,7 +99,9 @@ public class SellerService {
                 throw new UserIsNotSellerException("Usuário " + seller.getId() + " não é um vendedor");
             }
 
-            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().after(new Date());
+            ZonedDateTime now = ZonedDateTime.now();
+
+            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().toInstant().isAfter(now.toInstant());
 
             // somente os posts que são promocionais e que não estão expirados
             List<Post> promoPosts = seller.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
