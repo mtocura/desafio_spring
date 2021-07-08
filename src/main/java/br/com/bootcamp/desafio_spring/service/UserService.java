@@ -112,11 +112,7 @@ public class UserService {
 
             postsEntities.sort(null);
 
-            if (order.equals("date_asc")) {
-                SortByPostDate.sortByDatePostASC(postsEntities);
-            } else if (order.equals("date_desc")) {
-                SortByPostDate.sortByDatePostDESC(postsEntities);
-            }
+            SortByPostDate.sortByDate(postsEntities, order);
 
             List<PostDTO> posts =
                     postsEntities

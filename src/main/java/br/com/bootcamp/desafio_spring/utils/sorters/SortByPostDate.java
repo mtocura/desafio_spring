@@ -8,11 +8,12 @@ import java.util.List;
 
 public class SortByPostDate {
 
-    public static void sortByDatePostASC(List<Post> posts) {
-        Collections.sort(posts, Comparator.comparing(Post::getCreatedAt));
-    }
-
-    public static void sortByDatePostDESC(List<Post> posts) {
-        Collections.sort(posts, Comparator.comparing(Post::getCreatedAt).reversed());
+    public static void sortByDate(List<Post> posts, String order) {
+        if (FieldSortOrder.isDateDesc(order)) {
+            Collections.sort(posts, Comparator.comparing(Post::getCreatedAt).reversed());
+        }
+        if (FieldSortOrder.isDateAsc(order)) {
+            Collections.sort(posts, Comparator.comparing(Post::getCreatedAt));
+        }
     }
 }

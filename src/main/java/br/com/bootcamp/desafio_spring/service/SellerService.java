@@ -3,7 +3,6 @@ package br.com.bootcamp.desafio_spring.service;
 import br.com.bootcamp.desafio_spring.dto.*;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
-import br.com.bootcamp.desafio_spring.exception.*;
 import br.com.bootcamp.desafio_spring.form.PostForm;
 import br.com.bootcamp.desafio_spring.form.PostPromoForm;
 import br.com.bootcamp.desafio_spring.handler.PostHandler;
@@ -14,7 +13,6 @@ import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
-import br.com.bootcamp.desafio_spring.handler.PostPromoHandler;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
@@ -106,13 +104,7 @@ public class SellerService {
 
             List<Post> postsPromoUser = user.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
 
-            if (order.equals("date_asc")) {
-                SortByPostDate.sortByDatePostASC(postsPromoUser);
-            }
-
-            if (order.equals("date_desc")) {
-                SortByPostDate.sortByDatePostDESC(postsPromoUser);
-            }
+            SortByPostDate.sortByDate(postsPromoUser, order);
 
             return PostPromoHandler.convertSellerPromoPostsDTO(userId, user.getName(), postsPromoUser);
 
