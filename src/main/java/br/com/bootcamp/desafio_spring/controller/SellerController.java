@@ -28,7 +28,7 @@ public class SellerController {
         return this.sellerService.sellerFollowersCount(userId);
     }
 
-    @GetMapping("/products/{userId}/countPromo/")
+    @GetMapping("/products/{userId}/countPromo")
     public ResponseEntity<?> promoPostsCount(@PathVariable int userId) {
         return ResponseEntity.ok(sellerService.sellerPromoPostsCount(userId));
     }
