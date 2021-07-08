@@ -5,12 +5,14 @@ import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsDTO;
 import br.com.bootcamp.desafio_spring.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
 public class SellerController {
 
     private SellerService sellerService;
@@ -34,7 +36,12 @@ public class SellerController {
     }
 
     @GetMapping("/products/{userId}/list")
-    public ResponseEntity<?> getProductList (@PathVariable int userId, @RequestParam(required = false) String order) {
+    public ResponseEntity<?> getProductPromoList (@PathVariable int userId, @RequestParam(required = false) String order) {
         return ResponseEntity.ok(sellerService.productList(userId, order == null ? "" : order));
+    }
+
+    @GetMapping("/products/{userId}/countPromo")
+    public ResponseEntity<?> promoPostsCount(@PathVariable int userId) {
+        return ResponseEntity.ok(sellerService.sellerPromoPostsCount(userId));
     }
 }

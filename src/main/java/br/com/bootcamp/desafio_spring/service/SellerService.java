@@ -2,6 +2,9 @@ package br.com.bootcamp.desafio_spring.service;
 
 import br.com.bootcamp.desafio_spring.dto.*;
 import br.com.bootcamp.desafio_spring.entity.Post;
+import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
+import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsCountDTO;
+import br.com.bootcamp.desafio_spring.dto.SellerFollowersListDTO;
 import br.com.bootcamp.desafio_spring.entity.User;
 import br.com.bootcamp.desafio_spring.entity.UserFollow;
 import br.com.bootcamp.desafio_spring.exception.DatabaseException;
@@ -17,8 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,7 +90,7 @@ public class SellerService {
         }
     }
 
-    public SellerPromoPostsDTO productList (int userId, String order){
+    public SellerPromoPostsDTO productList (int userId, String order) {
         try {
             User user = userRepository.getById(userId);
 
@@ -96,25 +101,49 @@ public class SellerService {
                 throw new UserNotExistException("Usuário " + userId + " não é vendedor.");
             }
 
-            List<Post> postsUser =
-                    user.getPosts()
-                            .stream()
-                            .filter(Post::getHasPromo)
-                            .collect(Collectors.toList());
+            ZonedDateTime now = ZonedDateTime.now();
 
-            if(order.equals("date_asc")) {
-                SortByPostDate.sortByDatePostASC(postsUser);
+            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().toInstant().isAfter(now.toInstant());
+
+            List<Post> postsPromoUser = user.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
+
+            if (order.equals("date_asc")) {
+                SortByPostDate.sortByDatePostASC(postsPromoUser);
             }
 
-            if(order.equals("date_desc")) {
-                SortByPostDate.sortByDatePostDESC(postsUser);
+            if (order.equals("date_desc")) {
+                SortByPostDate.sortByDatePostDESC(postsPromoUser);
             }
 
-            return PostPromoHandler.convertSellerPromoPostsDTO(userId, user.getName(), postsUser);
+            return PostPromoHandler.convertSellerPromoPostsDTO(userId, user.getName(), postsPromoUser);
 
         } catch (IOException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
 
+    public SellerPromoPostsCountDTO sellerPromoPostsCount(int userId) {
+        try {
+            User seller = userRepository.getById(userId);
+
+            if(seller == null) {
+                throw new UserNotExistException("Usuário " + userId + " não encontrado");
+            }
+
+            if(!seller.getIsSeller()) {
+                throw new UserIsNotSellerException("Usuário " + seller.getId() + " não é um vendedor");
+            }
+
+            ZonedDateTime now = ZonedDateTime.now();
+
+            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().toInstant().isAfter(now.toInstant());
+
+            // somente os posts que são promocionais e que não estão expirados
+            List<Post> promoPosts = seller.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
+
+            return new SellerPromoPostsCountDTO(seller.getId(), seller.getName(), promoPosts.size());
+        } catch(IOException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 }

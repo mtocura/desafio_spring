@@ -1,9 +1,8 @@
 package br.com.bootcamp.desafio_spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Post implements IEntity {
@@ -14,13 +13,13 @@ public class Post implements IEntity {
     private Integer sellerID;
     private Boolean hasPromo;
     private Double discount;
-    private Date expireAt;
-    private Date createdAt;
+    private ZonedDateTime expireAt;
+    private ZonedDateTime createdAt;
 
     public Post() {
     }
 
-    public Post(Integer id, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, Date expireAt, Date createdAt) {
+    public Post(Integer id, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, ZonedDateTime expireAt, ZonedDateTime createdAt) {
         this.id = id;
         this.price = price;
         this.category = category;
@@ -90,19 +89,19 @@ public class Post implements IEntity {
         this.discount = discount;
     }
 
-    public Date getExpireAt() {
+    public ZonedDateTime getExpireAt() {
         return expireAt;
     }
 
-    public void setExpireAt(Date expireAt) {
+    public void setExpireAt(ZonedDateTime expireAt) {
         this.expireAt = expireAt;
     }
 
-    public Date getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }
