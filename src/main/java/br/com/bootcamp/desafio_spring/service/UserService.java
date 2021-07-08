@@ -87,7 +87,7 @@ public class UserService {
             for (User seller : sellers) {
                 for (Post p : seller.getPosts()) {
                     ZonedDateTime date = p.getCreatedAt().toInstant().atZone(ZoneId.systemDefault());
-                    ZonedDateTime expire = p.getExpireAt().toInstant().atZone(ZoneId.systemDefault());
+                    ZonedDateTime expire = p.getExpireAt() != null ? p.getExpireAt().toInstant().atZone(ZoneId.systemDefault()) : null;
                     if (isFollowedPostsValidDate(now, limit, date, expire)) {
                         postsEntities.add(p);
                     }

@@ -29,7 +29,7 @@ public class UserFollowService {
     public void follow(int userId, int sellerId)  {
         try {
             if (userId == sellerId) {
-                throw new InvalidFollowException("Um usuário não seguir-se");
+                throw new InvalidFollowException("Um usuário não pode seguir-se");
             }
 
             User user = this.userRepository.getById(userId);
