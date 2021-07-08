@@ -5,6 +5,7 @@ import br.com.bootcamp.desafio_spring.dto.SellerPromoPostsDTO;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.form.PostPromoForm;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ public class PostPromoHandler {
                 postPromoForm.getHasPromo(),
                 postPromoForm.getDiscount(),
                 new Date(),
-                postPromoForm.getDate()
+                ZonedDateTime.now()
         );
     }
 
