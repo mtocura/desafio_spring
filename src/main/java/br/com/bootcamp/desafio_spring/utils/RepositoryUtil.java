@@ -17,7 +17,7 @@ public final class RepositoryUtil {
         List<User> sellers = new ArrayList<>();
 
         for (UserFollow f : follows) {
-            User userFollower = userRep.getById(f.getUser());
+            User userFollower = userRep.getById(f.getSeller());
             sellers.add(userFollower);
         }
         return sellers;
