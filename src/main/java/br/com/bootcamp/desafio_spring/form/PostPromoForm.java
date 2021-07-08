@@ -14,9 +14,8 @@ public class PostPromoForm extends PostForm{
     @Positive(message = "o atributo de desconto de um produto deve ser maior do que 0")
     private double discount;
 
-    @NotEmpty(message = "A data da promoção não pode ser vazio ou nulo")
-    @NotBlank(message = "A data da promoção não pode ser espaços em branco ou nulo")
-    @PastOrPresent(message = "A data da promoção deve ser datas passadas ou o dia de hoje")
+    @NotNull(message = "A data de expiração não deve ser nula")
+    @FutureOrPresent(message = "A data de expiração da promoção deve ser datas futuras ou o dia de hoje")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date expireDate;
 
