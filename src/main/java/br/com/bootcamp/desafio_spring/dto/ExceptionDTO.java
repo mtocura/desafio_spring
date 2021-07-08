@@ -1,13 +1,13 @@
 package br.com.bootcamp.desafio_spring.dto;
 
 public class ExceptionDTO {
-    private String mensagem;
+    private String message;
 
-    public ExceptionDTO(String mensagem) {
-        this.mensagem = mensagem;
+    public ExceptionDTO(String message) {
+        this.message = message;
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public String getMenssage() {
+        return message;
     }
 }
