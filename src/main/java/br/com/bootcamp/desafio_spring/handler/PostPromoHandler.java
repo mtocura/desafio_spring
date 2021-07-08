@@ -22,7 +22,7 @@ public class PostPromoHandler {
                 postPromoForm.getHasPromo(),
                 postPromoForm.getDiscount(),
                 postPromoForm.getExpireDate(),
-                ZonedDateTime.now()
+                new Date()
         );
     }
 

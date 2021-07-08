@@ -3,7 +3,7 @@ package br.com.bootcamp.desafio_spring.form;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.*;
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 public class PostPromoForm extends PostForm{
     @NotNull(message = "O atributo que indica se a publicação é promocional não pode ser nulo")
@@ -18,12 +18,12 @@ public class PostPromoForm extends PostForm{
     @NotBlank(message = "A data da promoção não pode ser espaços em branco ou nulo")
     @PastOrPresent(message = "A data da promoção deve ser datas passadas ou o dia de hoje")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private ZonedDateTime expireDate;
+    private Date expireDate;
 
     public PostPromoForm() {
     }
 
-    public PostPromoForm(int userId, int postId, ZonedDateTime date, ProductForm detail, int category, double price, boolean hasPromo, double discount, ZonedDateTime expireDate) {
+    public PostPromoForm(int userId, int postId, Date date, ProductForm detail, int category, double price, boolean hasPromo, double discount, Date expireDate) {
         super(userId, postId, date, detail, category, price);
         this.hasPromo = hasPromo;
         this.discount = discount;
@@ -38,7 +38,7 @@ public class PostPromoForm extends PostForm{
         return discount;
     }
 
-    public ZonedDateTime getExpireDate() {
+    public Date getExpireDate() {
         return expireDate;
     }
 }

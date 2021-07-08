@@ -2,10 +2,11 @@ package br.com.bootcamp.desafio_spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Post implements IEntity {
+public class Post implements IEntity, Comparable<Post> {
     private Integer id;
     private Double price;
     private Integer category;
@@ -13,13 +14,13 @@ public class Post implements IEntity {
     private Integer sellerID;
     private Boolean hasPromo;
     private Double discount;
-    private ZonedDateTime expireAt;
-    private ZonedDateTime createdAt;
+    private Date expireAt;
+    private Date createdAt;
 
     public Post() {
     }
 
-    public Post(Integer id, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, ZonedDateTime expireAt, ZonedDateTime createdAt) {
+    public Post(Integer id, Double price, Integer category, Product product, Integer sellerID, Boolean hasPromo, Double discount, Date expireAt, Date createdAt) {
         this.id = id;
         this.price = price;
         this.category = category;
@@ -89,19 +90,32 @@ public class Post implements IEntity {
         this.discount = discount;
     }
 
-    public ZonedDateTime getExpireAt() {
+    public Date getExpireAt() {
         return expireAt;
     }
 
-    public void setExpireAt(ZonedDateTime expireAt) {
+    public void setExpireAt(Date expireAt) {
         this.expireAt = expireAt;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+
+    @Override
+    public int compareTo(Post post) {
+        Date postDate = post.getCreatedAt();
+        if (postDate.before(this.getCreatedAt())) {
+            return -1;
+        }
+        if (postDate.after(this.getCreatedAt())) {
+            return 1;
+        }
+        return 0;
     }
 }

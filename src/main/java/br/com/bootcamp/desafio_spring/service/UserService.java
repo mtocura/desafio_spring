@@ -114,17 +114,8 @@ public class UserService {
                     }
                 }
             }
-            postsEntities.sort((p, q) -> {
-                Date pDate = p.getCreatedAt();
-                Date qDate = q.getCreatedAt();
-                if (pDate.before(qDate)) {
-                    return -1;
-                }
-                if (qDate.before(pDate)) {
-                    return 1;
-                }
-                return 0;
-            });
+
+            postsEntities.sort(null);
 
             List<PostDTO> posts =
                     postsEntities
