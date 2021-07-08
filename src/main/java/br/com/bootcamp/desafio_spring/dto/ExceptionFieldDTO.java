@@ -1,15 +1,15 @@
 package br.com.bootcamp.desafio_spring.dto;
 
-public class ExceptionDTO {
+public class ExceptionFieldDTO {
 
     private String campo;
     private String mensagem;
 
-    public ExceptionDTO(String mensagem) {
+    public ExceptionFieldDTO(String mensagem) {
         this.mensagem = mensagem;
     }
 
-    public ExceptionDTO(String campo, String mensagem) {
+    public ExceptionFieldDTO(String campo, String mensagem) {
         this.campo = campo;
         this.mensagem = mensagem;
     }
