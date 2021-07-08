@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,7 +102,9 @@ public class SellerService {
                 throw new UserIsNotSellerException("Usuário " + seller.getId() + " não é um vendedor");
             }
 
-            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().after(new Date());
+            ZonedDateTime now = ZonedDateTime.now();
+
+            Predicate<Post> isPromoAndNotExpired = post -> post.getHasPromo() && post.getExpireAt().toInstant().isAfter(now.toInstant());
 
             // somente os posts que são promocionais e que não estão expirados
             List<Post> promoPosts = seller.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
