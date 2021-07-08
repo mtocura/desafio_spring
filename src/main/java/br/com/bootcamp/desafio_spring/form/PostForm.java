@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.*;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public class PostForm {
     @NotNull(message = "O id do usuário não pode ser nulo")
@@ -18,8 +18,8 @@ public class PostForm {
 
     @NotNull(message = "A data da publicação não pode ser vazio ou nulo")
     @PastOrPresent(message = "A data da publicação deve ser datas passadas ou o dia de hoje")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private ZonedDateTime date;
 
     @NotNull(message = "Os detalhes do produto não podem ser nulos")
     private ProductForm detail;
@@ -35,7 +35,7 @@ public class PostForm {
     public PostForm() {
     }
 
-    public PostForm(int userId, int postId, Date date, ProductForm detail, int category, double price) {
+    public PostForm(int userId, int postId, ZonedDateTime date, ProductForm detail, int category, double price) {
         this.userId = userId;
         this.postId = postId;
         this.date = date;
@@ -52,7 +52,7 @@ public class PostForm {
         return postId;
     }
 
-    public Date getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
