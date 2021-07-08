@@ -7,11 +7,13 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SortByName {
-    public static void sortByNameASC(List<User> users) {
-        Collections.sort(users, Comparator.comparing(User::getName));
-    }
 
-    public static void sortByNameDESC(List<User> users) {
-        Collections.sort(users, Comparator.comparing(User::getName).reversed());
+    public static void sortByName(List<User> users, String order) {
+        if (FieldSortOrder.isNameDesc(order)) {
+            Collections.sort(users, Comparator.comparing(User::getName).reversed());
+        }
+        if (FieldSortOrder.isNameAsc(order)) {
+            Collections.sort(users, Comparator.comparing(User::getName));
+        }
     }
 }

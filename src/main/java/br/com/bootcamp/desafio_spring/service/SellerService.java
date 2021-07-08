@@ -62,13 +62,7 @@ public class SellerService {
                 followerUsers.add(userFollower);
             }
 
-            if(order.equals("name_asc")) {
-                SortByName.sortByNameASC(followerUsers);
-            }
-
-            if(order.equals("name_desc")) {
-                SortByName.sortByNameDESC(followerUsers);
-            }
+            SortByName.sortByName(followerUsers, order);
 
             return UserHandler.convertSellerFollowers(userId, user.getName(), followerUsers);
         } catch (IOException e) {

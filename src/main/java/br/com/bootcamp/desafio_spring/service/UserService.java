@@ -74,13 +74,7 @@ public class UserService {
                 followedSellers.add(seller);
             }
 
-            if(order.equals("name_asc")) {
-                SortByName.sortByNameASC(followedSellers);
-            }
-
-            if(order.equals("name_desc")) {
-                SortByName.sortByNameDESC(followedSellers);
-            }
+            SortByName.sortByName(followedSellers, order);
 
             return UserHandler.convertFollowingUsers(userId, user.getName(), followedSellers);
         } catch (IOException e) {
