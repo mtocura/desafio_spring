@@ -1,9 +1,9 @@
 package br.com.bootcamp.desafio_spring.form;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.*;
+import java.time.ZonedDateTime;
 
 public class PostPromoForm extends PostForm{
     @NotNull(message = "O atributo que indica se a publicação é promocional não pode ser nulo")
@@ -14,13 +14,20 @@ public class PostPromoForm extends PostForm{
     @Positive(message = "o atributo de desconto de um produto deve ser maior do que 0")
     private double discount;
 
+    @NotEmpty(message = "A data da promoção não pode ser vazio ou nulo")
+    @NotBlank(message = "A data da promoção não pode ser espaços em branco ou nulo")
+    @PastOrPresent(message = "A data da promoção deve ser datas passadas ou o dia de hoje")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private ZonedDateTime expireDate;
+
     public PostPromoForm() {
     }
 
-    public PostPromoForm(int userId, int postId, Date date, ProductForm detail, int category, double price, boolean hasPromo, double discount) {
+    public PostPromoForm(int userId, int postId, ZonedDateTime date, ProductForm detail, int category, double price, boolean hasPromo, double discount, ZonedDateTime expireDate) {
         super(userId, postId, date, detail, category, price);
         this.hasPromo = hasPromo;
         this.discount = discount;
+        this.expireDate = expireDate;
     }
 
     public boolean getHasPromo() {
@@ -29,5 +36,9 @@ public class PostPromoForm extends PostForm{
 
     public double getDiscount() {
         return discount;
+    }
+
+    public ZonedDateTime getExpireDate() {
+        return expireDate;
     }
 }
