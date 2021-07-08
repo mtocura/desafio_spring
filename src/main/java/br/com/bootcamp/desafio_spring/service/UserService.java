@@ -15,6 +15,7 @@ import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
+import br.com.bootcamp.desafio_spring.utils.sorters.SortByPostDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,7 +88,7 @@ public class UserService {
         }
     }
 
-    public SellerPostsDTO followedPosts(int userId) {
+    public SellerPostsDTO followedPosts(int userId, String order) {
         try {
             User user = this.userRepository.getById(userId);
             if (user == null) {
@@ -116,6 +117,12 @@ public class UserService {
             }
 
             postsEntities.sort(null);
+
+            if (order.equals("date_asc")) {
+                SortByPostDate.sortByDatePostASC(postsEntities);
+            } else if (order.equals("date_desc")) {
+                SortByPostDate.sortByDatePostDESC(postsEntities);
+            }
 
             List<PostDTO> posts =
                     postsEntities
