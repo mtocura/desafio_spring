@@ -15,6 +15,7 @@ import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.PostUtil;
 import br.com.bootcamp.desafio_spring.utils.RepositoryUtil;
 import br.com.bootcamp.desafio_spring.utils.UserUtil;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
@@ -114,11 +115,14 @@ public class SellerService {
 
     public void createPost(PostForm postForm) {
         try {
-            User seller = this.userRepository.getById(postForm.getUserId());
+            User seller = userRepository.getById(postForm.getUserId());
 
             UserUtil.userIsSeller(seller, postForm.getUserId());
 
             Post newPost = PostHandler.create(postForm);
+
+            PostUtil.idAlreadyExists(seller, newPost);
+
             seller.getPosts().add(newPost);
             userRepository.update(seller);
         } catch (IOException e) {
@@ -128,11 +132,13 @@ public class SellerService {
 
     public void createPromoPost(PostPromoForm postPromoForm) {
         try {
-            User seller = this.userRepository.getById(postPromoForm.getUserId());
+            User seller = userRepository.getById(postPromoForm.getUserId());
 
             UserUtil.userIsSeller(seller, postPromoForm.getUserId());
 
             Post newPromoPost = PostPromoHandler.create(postPromoForm);
+
+            PostUtil.idAlreadyExists(seller, newPromoPost);
 
             seller.getPosts().add(newPromoPost);
             userRepository.update(seller);
