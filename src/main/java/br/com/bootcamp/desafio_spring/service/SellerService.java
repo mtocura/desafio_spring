@@ -3,7 +3,6 @@ package br.com.bootcamp.desafio_spring.service;
 import br.com.bootcamp.desafio_spring.dto.*;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
-import br.com.bootcamp.desafio_spring.exception.PostIdAlreadyExistsException;
 import br.com.bootcamp.desafio_spring.form.PostForm;
 import br.com.bootcamp.desafio_spring.form.PostPromoForm;
 import br.com.bootcamp.desafio_spring.handler.PostHandler;
@@ -16,6 +15,7 @@ import br.com.bootcamp.desafio_spring.exception.DatabaseException;
 import br.com.bootcamp.desafio_spring.handler.UserHandler;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.PostUtil;
 import br.com.bootcamp.desafio_spring.utils.RepositoryUtil;
 import br.com.bootcamp.desafio_spring.utils.UserUtil;
 import br.com.bootcamp.desafio_spring.utils.sorters.SortByName;
@@ -114,18 +114,13 @@ public class SellerService {
 
     public void createPost(PostForm postForm) {
         try {
-
             User seller = userRepository.getById(postForm.getUserId());
 
             UserUtil.userIsSeller(seller, postForm.getUserId());
 
             Post newPost = PostHandler.create(postForm);
 
-            for (Post post : seller.getPosts()) {
-                if (newPost.getId().equals(post.getId())) {
-                    throw new PostIdAlreadyExistsException("O vendedor já possui um post com este ID.");
-                }
-            }
+            PostUtil.idAlreadyExists(seller, newPost);
 
             seller.getPosts().add(newPost);
             userRepository.update(seller);
@@ -142,11 +137,7 @@ public class SellerService {
 
             Post newPromoPost = PostPromoHandler.create(postPromoForm);
 
-            for (Post post : seller.getPosts()) {
-                if (newPromoPost.getId().equals(post.getId())) {
-                    throw new PostIdAlreadyExistsException("O vendedor já possui um post com este ID.");
-                }
-            }
+            PostUtil.idAlreadyExists(seller, newPromoPost);
 
             seller.getPosts().add(newPromoPost);
             userRepository.update(seller);
