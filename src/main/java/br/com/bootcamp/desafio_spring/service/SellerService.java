@@ -121,11 +121,9 @@ public class SellerService {
 
             Post newPost = PostHandler.create(postForm);
 
-            //User sellerUpdated = PostUtil.postIdExists(seller, newPost);
-
             for (Post post : seller.getPosts()) {
                 if (newPost.getId().equals(post.getId())) {
-                    throw new PostIdAlreadyExistsException("Você já possui um post com este ID.");
+                    throw new PostIdAlreadyExistsException("O vendedor já possui um post com este ID.");
                 }
             }
 
@@ -146,7 +144,7 @@ public class SellerService {
 
             for (Post post : seller.getPosts()) {
                 if (newPromoPost.getId().equals(post.getId())) {
-                    throw new PostIdAlreadyExistsException("Você já possui um post com este ID.");
+                    throw new PostIdAlreadyExistsException("O vendedor já possui um post com este ID.");
                 }
             }
 
