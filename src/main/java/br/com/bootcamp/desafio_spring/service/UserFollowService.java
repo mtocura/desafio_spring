@@ -9,6 +9,7 @@ import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
 import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
 import br.com.bootcamp.desafio_spring.repository.UserFollowRepository;
 import br.com.bootcamp.desafio_spring.repository.UserRepository;
+import br.com.bootcamp.desafio_spring.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,22 +29,16 @@ public class UserFollowService {
     public void follow(int userId, int sellerId)  {
         try {
             if (userId == sellerId) {
-                throw new InvalidFollowException("Um usuário não seguir-se");
+                throw new InvalidFollowException("Um usuário não pode seguir-se");
             }
 
             User user = this.userRepository.getById(userId);
-            if (user == null) {
-                throw new UserNotExistException("Usuário " + userId + " não encontrado");
-            }
+
+            UserUtil.userExists(user, userId);
 
             User seller = this.userRepository.getById(sellerId);
 
-            if (seller == null) {
-                throw new UserNotExistException("Vendedor " + userId + " não encontrado");
-            }
-            if (!seller.getIsSeller()) {
-                throw new UserIsNotSellerException("Usuario " + sellerId + " não é um vendedor e não pode ser seguido");
-            }
+            UserUtil.userIsSeller(seller, sellerId);
 
             UserFollow uf = this.userFollowRepository.get(userId, sellerId);
             if (uf == null) {
@@ -59,22 +54,16 @@ public class UserFollowService {
     public void unfollow(int userId, int sellerId) {
         try {
             User user = this.userRepository.getById(userId);
-            if (user == null) {
-                throw new UserNotExistException("Usuário " + userId + " não encontrado");
-            }
+
+            UserUtil.userExists(user, userId);
 
             User seller = this.userRepository.getById(sellerId);
-            if (seller == null) {
-                throw new UserNotExistException("Vendedor " + userId + " não encontrado");
-            }
 
-            if (!seller.getIsSeller()) {
-                throw new UserIsNotSellerException("Usuário " + sellerId + " não é um vendedor e não pode deixar de ser seguido");
-            }
+            UserUtil.userIsSeller(seller, sellerId);
 
             UserFollow uf = this.userFollowRepository.get(userId, sellerId);
             if (uf != null) {
-                this.userFollowRepository.remove(uf);
+                this.userFollowRepository.remove(uf.getId());
             } else {
                 throw new SellerIsNotFollowedException("Usuário" + userId + " não segue vendedor " + sellerId);
             }

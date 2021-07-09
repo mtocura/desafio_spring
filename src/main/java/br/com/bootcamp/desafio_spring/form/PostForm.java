@@ -3,6 +3,7 @@ package br.com.bootcamp.desafio_spring.form;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -22,6 +23,7 @@ public class PostForm {
     private Date date;
 
     @NotNull(message = "Os detalhes do produto não podem ser nulos")
+    @Valid
     private ProductForm detail;
 
     @NotNull(message = "A categoria não pode ser nula")
