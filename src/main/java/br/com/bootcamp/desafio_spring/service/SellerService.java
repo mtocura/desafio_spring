@@ -3,6 +3,7 @@ package br.com.bootcamp.desafio_spring.service;
 import br.com.bootcamp.desafio_spring.dto.*;
 import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.dto.SellerFollowersCountDTO;
+import br.com.bootcamp.desafio_spring.exception.PostIdAlreadyExistsException;
 import br.com.bootcamp.desafio_spring.form.PostForm;
 import br.com.bootcamp.desafio_spring.form.PostPromoForm;
 import br.com.bootcamp.desafio_spring.handler.PostHandler;
@@ -113,11 +114,21 @@ public class SellerService {
 
     public void createPost(PostForm postForm) {
         try {
-            User seller = this.userRepository.getById(postForm.getUserId());
+
+            User seller = userRepository.getById(postForm.getUserId());
 
             UserUtil.userIsSeller(seller, postForm.getUserId());
 
             Post newPost = PostHandler.create(postForm);
+
+            //User sellerUpdated = PostUtil.postIdExists(seller, newPost);
+
+            for (Post post : seller.getPosts()) {
+                if (newPost.getId().equals(post.getId())) {
+                    throw new PostIdAlreadyExistsException("Você já possui um post com este ID.");
+                }
+            }
+
             seller.getPosts().add(newPost);
             userRepository.update(seller);
         } catch (IOException e) {
@@ -127,11 +138,17 @@ public class SellerService {
 
     public void createPromoPost(PostPromoForm postPromoForm) {
         try {
-            User seller = this.userRepository.getById(postPromoForm.getUserId());
+            User seller = userRepository.getById(postPromoForm.getUserId());
 
             UserUtil.userIsSeller(seller, postPromoForm.getUserId());
 
             Post newPromoPost = PostPromoHandler.create(postPromoForm);
+
+            for (Post post : seller.getPosts()) {
+                if (newPromoPost.getId().equals(post.getId())) {
+                    throw new PostIdAlreadyExistsException("Você já possui um post com este ID.");
+                }
+            }
 
             seller.getPosts().add(newPromoPost);
             userRepository.update(seller);
