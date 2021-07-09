@@ -23,7 +23,7 @@ Este repositório contém o CRUD do desafio spring realizado em grupo.
     ```
     {
         "userId": 100,
-        "userName": "usuario novo 2"
+        "userName": "usuario novo"
     }
     ```
   | Parâmetro | Tipo | Descrição/Exemplo |
