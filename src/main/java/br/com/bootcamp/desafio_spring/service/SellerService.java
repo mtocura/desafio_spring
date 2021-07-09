@@ -82,6 +82,7 @@ public class SellerService {
 
             List<Post> postsPromoUser = user.getPosts().stream().filter(isPromoAndNotExpired).collect(Collectors.toList());
 
+            SortByName.sortByProductName(postsPromoUser, order);
             SortByPostDate.sortByDate(postsPromoUser, order);
 
             return PostPromoHandler.convertSellerPromoPostsDTO(userId, user.getName(), postsPromoUser);

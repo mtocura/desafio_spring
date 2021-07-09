@@ -1,5 +1,6 @@
 package br.com.bootcamp.desafio_spring.utils.sorters;
 
+import br.com.bootcamp.desafio_spring.entity.Post;
 import br.com.bootcamp.desafio_spring.entity.User;
 
 import java.util.Collections;
@@ -14,6 +15,15 @@ public class SortByName {
         }
         if (FieldSortOrder.isNameAsc(order)) {
             Collections.sort(users, Comparator.comparing(User::getName));
+        }
+    }
+
+    public static void sortByProductName(List<Post> postsPromo, String order) {
+        if (FieldSortOrder.isNameDesc(order)) {
+            postsPromo.sort((p1, p2) -> -p1.getProduct().getName().compareToIgnoreCase(p2.getProduct().getName()));
+        }
+        if (FieldSortOrder.isNameAsc(order)) {
+            postsPromo.sort((p1, p2) -> p1.getProduct().getName().compareToIgnoreCase(p2.getProduct().getName()));
         }
     }
 }
