@@ -15,6 +15,7 @@ public class UserHandler {
         User user = new User();
         user.setName(userForm.getName());
         user.setIsSeller(userForm.getIsSeller());
+        user.setPosts(new ArrayList<>());
 
         return user;
     }
