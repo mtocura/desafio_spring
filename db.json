@@ -1,4 +1,8 @@
 {
+  "nextPostId": 100,
+  "nextProductId": 100,
+  "nextUserId": 100,
+  "nextUserFollowId": 100,
   "users": {
     "1": {
       "id": 1,
