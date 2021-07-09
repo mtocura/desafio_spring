@@ -2,11 +2,7 @@ package br.com.bootcamp.desafio_spring.exception.handler;
 
 import br.com.bootcamp.desafio_spring.dto.ExceptionDTO;
 import br.com.bootcamp.desafio_spring.dto.ExceptionFieldDTO;
-import br.com.bootcamp.desafio_spring.exception.SellerIsNotFollowedException;
-import br.com.bootcamp.desafio_spring.exception.DatabaseException;
-import br.com.bootcamp.desafio_spring.exception.InvalidFollowException;
-import br.com.bootcamp.desafio_spring.exception.UserIsNotSellerException;
-import br.com.bootcamp.desafio_spring.exception.UserNotExistException;
+import br.com.bootcamp.desafio_spring.exception.*;
 import br.com.bootcamp.desafio_spring.utils.exceptions.FieldErrors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -52,6 +48,11 @@ public class SocialMeliExceptionHandler {
 
     @ExceptionHandler(SellerIsNotFollowedException.class)
     public ResponseEntity<?> sellerIsNotFollowedHandler(SellerIsNotFollowedException e) {
+        return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
+    }
+
+    @ExceptionHandler(PostIdAlreadyExistsException.class)
+    public ResponseEntity<?> postPromoIdAlreadyExixtsdHandler(PostIdAlreadyExistsException e) {
         return ResponseEntity.badRequest().body(new ExceptionDTO(e.getMessage()));
     }
 }
